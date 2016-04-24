@@ -14,8 +14,8 @@ class ChatCell: UITableViewCell {
     
     private let bubbleImageView = UIImageView()
     
-    private var outgoingContraint: NSLayoutConstraint!
-    private var incomingContraint: NSLayoutConstraint!
+    private var outgoingContraints: [NSLayoutConstraint]!
+    private var incomingContraints: [NSLayoutConstraint]!
     
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -31,12 +31,16 @@ class ChatCell: UITableViewCell {
         messageLabel.centerYAnchor.constraintEqualToAnchor(bubbleImageView.centerYAnchor).active = true
         
         bubbleImageView.widthAnchor.constraintEqualToAnchor(messageLabel.widthAnchor, constant: 50).active = true
-        bubbleImageView.heightAnchor.constraintEqualToAnchor(messageLabel.heightAnchor).active = true
-        bubbleImageView.topAnchor.constraintEqualToAnchor(contentView.topAnchor).active = true
+        bubbleImageView.heightAnchor.constraintEqualToAnchor(messageLabel.heightAnchor, constant: 20).active = true
+
         
+        outgoingContraints = [bubbleImageView.trailingAnchor.constraintEqualToAnchor(contentView.trailingAnchor)
+                             ,bubbleImageView.leadingAnchor.constraintGreaterThanOrEqualToAnchor(contentView.centerXAnchor)]
+        incomingContraints = [bubbleImageView.leadingAnchor.constraintEqualToAnchor(contentView.leadingAnchor)
+                              ,bubbleImageView.trailingAnchor.constraintLessThanOrEqualToAnchor(contentView.centerXAnchor)]
         
-        outgoingContraint = bubbleImageView.trailingAnchor.constraintEqualToAnchor(contentView.trailingAnchor)
-        incomingContraint = bubbleImageView.leadingAnchor.constraintEqualToAnchor(contentView.leadingAnchor)
+        bubbleImageView.topAnchor.constraintEqualToAnchor(contentView.topAnchor, constant: 10).active = true
+        bubbleImageView.bottomAnchor.constraintEqualToAnchor(contentView.bottomAnchor, constant: -10).active = true
         
         
         
@@ -53,13 +57,14 @@ class ChatCell: UITableViewCell {
     func incoming (incoming: Bool) {
         if (incoming)
         {
-            incomingContraint.active = true
-            outgoingContraint.active = false
+            NSLayoutConstraint.deactivateConstraints(outgoingContraints)
+            NSLayoutConstraint.activateConstraints(incomingContraints)
+            
             bubbleImageView.image = bubble.imcoming
             
         } else {
-            incomingContraint.active = false
-            outgoingContraint.active = true
+            NSLayoutConstraint.deactivateConstraints(incomingContraints)
+            NSLayoutConstraint.activateConstraints(outgoingContraints)
             bubbleImageView.image = bubble.outgoing
         }
     }
@@ -86,10 +91,14 @@ func coloredImage(image: UIImage, red: CGFloat, green: CGFloat, blue: CGFloat, a
 func makeBubble() -> (imcoming: UIImage, outgoing: UIImage)
 {
     let image = UIImage(named: "MessageBubble")!
-    let outgoing = coloredImage(image, red: 0/255, green: 122/255, blue: 255/255, alpha: 1)
+    
+    let insetsIncoming = UIEdgeInsets(top: 17, left: 26.5, bottom: 17.5, right: 21)
+    let insetsOutgoing = UIEdgeInsets(top: 17, left: 21, bottom: 17.5, right: 26.5)
+    
+    let outgoing = coloredImage(image, red: 0/255, green: 122/255, blue: 255/255, alpha: 1).resizableImageWithCapInsets(insetsOutgoing)
     let flippedImage = UIImage(CGImage: image.CGImage!, scale: image.scale, orientation: UIImageOrientation.UpMirrored)
     
-    let incoming = coloredImage(flippedImage, red: 229/255, green: 229/255, blue: 229/255, alpha: 1)
+    let incoming = coloredImage(flippedImage, red: 229/255, green: 229/255, blue: 229/255, alpha: 1).resizableImageWithCapInsets(insetsIncoming)
     
     return (incoming, outgoing)
 }
