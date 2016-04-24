@@ -55,6 +55,7 @@
 		B2B5DF531CC9E28C001A1146 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				B27ADE711CCD320F00451580 /* UITableView+Scroll.swift */,
 				B2B5DF541CC9E2B0001A1146 /* ChatCell.swift */,
 			);
 			name = Custom;
@@ -82,7 +83,6 @@
 				B2B5DF531CC9E28C001A1146 /* Custom */,
 				B2B5DF521CC9D3B3001A1146 /* Model */,
 				B2BCD1241CC8FA28000503E4 /* AppDelegate.swift */,
-				B27ADE711CCD320F00451580 /* UITableView+Scroll.swift */,
 				B2BCD1261CC8FA28000503E4 /* ChatViewController.swift */,
 				B2BCD1281CC8FA28000503E4 /* Main.storyboard */,
 				B2BCD12B1CC8FA28000503E4 /* Assets.xcassets */,
