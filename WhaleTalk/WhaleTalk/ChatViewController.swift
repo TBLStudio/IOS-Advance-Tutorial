@@ -14,6 +14,8 @@ class ChatViewController: UIViewController {
     
     private let newMessageField = UITextField()
     
+    private var bottomConstraint: NSLayoutConstraint!
+    
     private var messages = [Message]()
     
     private let cellIdentifier = "Cell"
@@ -49,14 +51,15 @@ class ChatViewController: UIViewController {
         newMessageArea.addSubview(sendButton)
         sendButton.setTitle("Send", forState: UIControlState.Normal)
         sendButton.setContentHuggingPriority(251, forAxis: .Horizontal)
+        sendButton.setContentCompressionResistancePriority(751, forAxis: .Horizontal)
         
-        
+        bottomConstraint = newMessageArea.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor)
+        bottomConstraint.active = true
         
         
         let messageAreaContraints: [NSLayoutConstraint] =
             [newMessageArea.leadingAnchor.constraintEqualToAnchor(view.leadingAnchor),
              newMessageArea.trailingAnchor.constraintEqualToAnchor(view.trailingAnchor),
-             newMessageArea.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor),
              newMessageField.leadingAnchor.constraintEqualToAnchor(newMessageArea.leadingAnchor, constant: 10),
              newMessageField.centerYAnchor.constraintEqualToAnchor(newMessageArea.centerYAnchor),
              sendButton.trailingAnchor.constraintEqualToAnchor(newMessageArea.trailingAnchor, constant: -10),
@@ -88,6 +91,14 @@ class ChatViewController: UIViewController {
         ]
         
         NSLayoutConstraint.activateConstraints(tableViewContrains)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ChatViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ChatViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        
+        let tabRecognizer = UITapGestureRecognizer(target: self, action: #selector(ChatViewController.handleSingleTab(_:)))
+        tabRecognizer.numberOfTapsRequired = 1
+        view.addGestureRecognizer(tabRecognizer)
 
         
     }
@@ -96,7 +107,36 @@ class ChatViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    func handleSingleTab (recognizer: UITapGestureRecognizer)
+    {
+        view.endEditing(true)
+    }
+    
+    func keyboardWillShow (notification: NSNotification)
+    {
+        updateBottomConstraint(notification)
+    }
+    func keyboardWillHide (notification: NSNotification)
+    {
+        updateBottomConstraint(notification)
+    }
+    
+    func updateBottomConstraint (notification: NSNotification)
+    {
+        if  let userInfo = notification.userInfo,
+            frame = userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue,
+            animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey]?.doubleValue
+        {
+            let newFrame = view.convertRect(frame, fromView: (UIApplication.sharedApplication().delegate?.window)!)
+            bottomConstraint.constant = newFrame.origin.y - CGRectGetHeight(view.frame)
+            UIView.animateWithDuration(animationDuration, animations: {
+                self.view.layoutIfNeeded()
+            })
+        }
+    
+    }
+    
 }
 
 extension ChatViewController: UITableViewDataSource
