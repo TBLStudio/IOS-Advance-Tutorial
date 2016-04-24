@@ -52,6 +52,7 @@ class ChatViewController: UIViewController {
         sendButton.setTitle("Send", forState: UIControlState.Normal)
         sendButton.setContentHuggingPriority(251, forAxis: .Horizontal)
         sendButton.setContentCompressionResistancePriority(751, forAxis: .Horizontal)
+        sendButton.addTarget(self, action: #selector(ChatViewController.pressdSend(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
         bottomConstraint = newMessageArea.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor)
         bottomConstraint.active = true
@@ -102,6 +103,10 @@ class ChatViewController: UIViewController {
 
         
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        tableView.scrollToBottom()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -134,8 +139,24 @@ class ChatViewController: UIViewController {
                 self.view.layoutIfNeeded()
             })
         }
+        tableView.scrollToBottom()
     
     }
+    
+    func pressdSend (button: UIButton)
+    {
+        guard let text = newMessageField.text where text.characters.count > 0 else {return}
+        let message = Message()
+        message.text = text
+        message.incoming = false
+        messages.append(message)
+        newMessageField.text = ""
+        tableView.reloadData()
+        tableView.scrollToBottom()
+        view.endEditing(true)
+        
+    }
+    
     
 }
 
