@@ -13,7 +13,13 @@ extension UITableView
 {
     func scrollToBottom ()
     {
-        if numberOfRowsInSection(0) > 0
+        if self.numberOfSections > 1
+        {
+            let lastSection = numberOfSections - 1
+            self.scrollToRowAtIndexPath(NSIndexPath(forRow: self.numberOfRowsInSection(lastSection) - 1, inSection: lastSection), atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
+        }
+        
+        if numberOfRowsInSection(0) > 0 && self.numberOfSections == 1
         {
             self.scrollToRowAtIndexPath(NSIndexPath(forRow: self.numberOfRowsInSection(0)-1, inSection: 0),  atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
         }
