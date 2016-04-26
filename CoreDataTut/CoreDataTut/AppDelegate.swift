@@ -9,6 +9,13 @@
 import UIKit
 import CoreData
 
+enum CoreDataAction {
+    case Delete
+    case Add
+    case Update
+    case Fetch
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -17,13 +24,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        //addPersonWith("Thai", last: "Ngo", age: 25)
+        //addPersonWith("Thai3", last: "Ngo3", age: 25)
+        //deletePerson()
         
         printPerson(fetchPerson())
         
-        updatePerson("Thai2", first: "Ngo2", age: 26)
+       // updatePerson("Thai2", first: "Ngo2", age: 26)
         
-        printPerson(fetchPerson())
+       // printPerson(fetchPerson())
         
         return true
     }
@@ -36,6 +44,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         print("---" + first + "---" + last + "---" )
     
+    }
+    
+    func deletePerson ()
+    {
+        let fetchRequest = NSFetchRequest()
+        let entityDescription = NSEntityDescription.entityForName("Person", inManagedObjectContext: self.managedObjectContext)
+        fetchRequest.entity = entityDescription
+        
+        do {
+            let result = try self.managedObjectContext.executeFetchRequest(fetchRequest)
+            if result.count > 0
+            {
+                let person = result[0] as! NSManagedObject
+                
+                self.managedObjectContext.deleteObject(person)
+                
+                do {
+                    try self.managedObjectContext.save()
+                } catch {
+                    
+                }
+                
+            }
+        
+        } catch {
+        
+        }
+        
     }
     
     func addPersonWith(first: String, last: String, age: Int) -> Bool
@@ -70,6 +106,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let result = try self.managedObjectContext.executeFetchRequest(fetchRequest)
             if result.count > 0
             {
+                print("Result count: " + String(result.count))
                 return result[0] as! NSManagedObject
             }
             return nil
