@@ -4,7 +4,7 @@
 //
 //  Created by Ngo Thai on 4/25/16.
 //  Copyright © 2016 TBLStudio. All rights reserved.
-//
+//http://code.tutsplus.com/tutorials/core-data-and-swift-managed-objects-and-fetch-requests--cms-25068
 
 import UIKit
 import CoreData
