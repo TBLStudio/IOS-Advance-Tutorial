@@ -16,8 +16,98 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        //addPersonWith("Thai", last: "Ngo", age: 25)
+        
+        printPerson(fetchPerson())
+        
+        updatePerson("Thai2", first: "Ngo2", age: 26)
+        
+        printPerson(fetchPerson())
+        
         return true
+    }
+    
+    func printPerson(person: NSManagedObject)
+    {
+        let first: String = person.valueForKey("first") as! String
+        let last: String = person.valueForKey("last") as! String
+        let age: Int = person.valueForKey("age") as! Int
+        
+        print("---" + first + "---" + last + "---" )
+    
+    }
+    
+    func addPersonWith(first: String, last: String, age: Int) -> Bool
+    {
+        let addPersonEntity = NSEntityDescription.entityForName("Person", inManagedObjectContext: self.managedObjectContext)
+        let newPerson = NSManagedObject(entity: addPersonEntity!, insertIntoManagedObjectContext: self.managedObjectContext)
+        
+        //Config new person
+        newPerson.setValue(first, forKey: "first")
+        newPerson.setValue(last, forKey: "last")
+        newPerson.setValue(age, forKey: "age")
+        
+        //Saving the record
+        do {
+            try newPerson.managedObjectContext?.save()
+            return true
+        } catch {
+            print("error")
+            return false
+        }
+        
+    }
+    
+    func fetchPerson() -> NSManagedObject!
+    {
+        let fetchRequest = NSFetchRequest()
+        let entityDescription = NSEntityDescription.entityForName("Person", inManagedObjectContext: self.managedObjectContext)
+        
+        fetchRequest.entity = entityDescription
+        
+        do {
+            let result = try self.managedObjectContext.executeFetchRequest(fetchRequest)
+            if result.count > 0
+            {
+                return result[0] as! NSManagedObject
+            }
+            return nil
+        
+        } catch {
+            return nil
+        }
+    }
+    
+    func updatePerson (last: String, first: String, age: Int)
+    {
+        let fetchRequest = NSFetchRequest()
+        let entityDescription = NSEntityDescription.entityForName("Person", inManagedObjectContext: self.managedObjectContext)
+        fetchRequest.entity = entityDescription
+        
+        do {
+            let result = try self.managedObjectContext.executeFetchRequest(fetchRequest)
+            if result.count > 0
+            {
+                let person = result[0] as! NSManagedObject
+                
+                //Update
+                person.setValue(last, forKey: "last")
+                person.setValue(first, forKey: "first")
+                person.setValue(age, forKey: "age")
+                
+                do {
+                    try person.managedObjectContext?.save()
+                
+                } catch {
+                
+                }
+            }
+        }
+        catch {
+        
+        }
+    
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -106,6 +196,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-
 }
+
+
 

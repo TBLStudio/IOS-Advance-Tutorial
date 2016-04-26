@@ -12,6 +12,7 @@ import CoreData
 class AllChatsViewController: UIViewController {
     
     var context: NSManagedObjectContext?
+    
     private var fetchedResultsController: NSFetchedResultsController?
     private let tableView = UITableView(frame: CGRectZero, style: UITableViewStyle.Plain)
     private let cellIdentifier = "MessageCell"
