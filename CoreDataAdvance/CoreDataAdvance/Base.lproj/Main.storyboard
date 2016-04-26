@@ -80,6 +80,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="Wfr-wt-m4b" id="NlZ-Zs-7RJ"/>
+                        <segue destination="6U3-du-GRl" kind="push" identifier="SegueUpdateToDoViewController" id="M2c-SX-fRb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -132,7 +133,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pyz-2d-5hb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1588" y="255"/>
+            <point key="canvasLocation" x="1686" y="97"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7MS-4D-qhG">
@@ -151,6 +152,55 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p8i-Nb-VeA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="181" y="336"/>
+        </scene>
+        <!--Update Todo-->
+        <scene sceneID="Cvs-ar-6PQ">
+            <objects>
+                <viewController id="6U3-du-GRl" userLabel="Update Todo" customClass="UpdateToDoViewController" customModule="CoreDataAdvance" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="XKt-l8-bqN"/>
+                        <viewControllerLayoutGuide type="bottom" id="IZ0-Ed-GeA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="DbQ-Jw-lXS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7n7-l2-zOI">
+                                <rect key="frame" x="25" y="156" width="550" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Sef-TE-nJt"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="7n7-l2-zOI" firstAttribute="centerX" secondItem="DbQ-Jw-lXS" secondAttribute="centerX" id="gZl-iW-XGX"/>
+                            <constraint firstItem="7n7-l2-zOI" firstAttribute="top" secondItem="XKt-l8-bqN" secondAttribute="bottom" constant="92" id="ysr-NG-Oyj"/>
+                            <constraint firstItem="7n7-l2-zOI" firstAttribute="width" secondItem="DbQ-Jw-lXS" secondAttribute="width" multiplier="0.9167" id="z6M-Mv-r7n"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Update Todo" id="dXE-kd-jdU" userLabel="Update Toto">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="60T-yj-pcr">
+                            <connections>
+                                <action selector="cancel:" destination="6U3-du-GRl" id="MqN-i9-hMs"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="YCB-ak-Mcm">
+                            <connections>
+                                <action selector="savePressed:" destination="6U3-du-GRl" id="1mV-EU-XNN"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="save" destination="YCB-ak-Mcm" id="CEZ-Qt-zoF"/>
+                        <outlet property="textField" destination="7n7-l2-zOI" id="Kv7-kO-g3i"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bhA-PD-fy5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1620" y="794"/>
         </scene>
     </scenes>
 </document>

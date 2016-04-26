@@ -15,6 +15,7 @@
 		B21FF9F61CCFB2F00020487E /* CoreDataAdvance.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B21FF9F41CCFB2F00020487E /* CoreDataAdvance.xcdatamodeld */; };
 		B21FF9F81CCFB81E0020487E /* ToDoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21FF9F71CCFB81E0020487E /* ToDoCell.swift */; };
 		B21FF9FA1CCFBB660020487E /* AddToDoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21FF9F91CCFBB660020487E /* AddToDoViewController.swift */; };
+		B21FF9FC1CCFE16B0020487E /* UpdateToDoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B21FF9FB1CCFE16B0020487E /* UpdateToDoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		B21FF9F51CCFB2F00020487E /* CoreDataAdvance.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataAdvance.xcdatamodel; sourceTree = "<group>"; };
 		B21FF9F71CCFB81E0020487E /* ToDoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoCell.swift; sourceTree = "<group>"; };
 		B21FF9F91CCFBB660020487E /* AddToDoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddToDoViewController.swift; sourceTree = "<group>"; };
+		B21FF9FB1CCFE16B0020487E /* UpdateToDoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateToDoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 				B21FF9E41CCFB02B0020487E /* ViewController.swift */,
 				B21FF9F71CCFB81E0020487E /* ToDoCell.swift */,
 				B21FF9F91CCFBB660020487E /* AddToDoViewController.swift */,
+				B21FF9FB1CCFE16B0020487E /* UpdateToDoViewController.swift */,
 				B21FF9E61CCFB02B0020487E /* Main.storyboard */,
 				B21FF9E91CCFB02B0020487E /* Assets.xcassets */,
 				B21FF9EB1CCFB02B0020487E /* LaunchScreen.storyboard */,
@@ -147,6 +150,7 @@
 				B21FF9F61CCFB2F00020487E /* CoreDataAdvance.xcdatamodeld in Sources */,
 				B21FF9E51CCFB02B0020487E /* ViewController.swift in Sources */,
 				B21FF9FA1CCFBB660020487E /* AddToDoViewController.swift in Sources */,
+				B21FF9FC1CCFE16B0020487E /* UpdateToDoViewController.swift in Sources */,
 				B21FF9E31CCFB02B0020487E /* AppDelegate.swift in Sources */,
 				B21FF9F81CCFB81E0020487E /* ToDoCell.swift in Sources */,
 			);

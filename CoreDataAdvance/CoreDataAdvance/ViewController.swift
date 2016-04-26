@@ -17,6 +17,8 @@ class ViewController: UIViewController {
     
     var fetchedResultsController: NSFetchedResultsController?
     
+    var selectedIndexPath: NSIndexPath?
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +59,16 @@ class ViewController: UIViewController {
                 print("Went Here")
                 addTodoViewController.managedObjectContext = self.managedObjectContext
             }
+        }
+        else if segue.identifier == "SegueUpdateToDoViewController"
+        {
+            guard let updateViewController = segue.destinationViewController as? UpdateToDoViewController else {return}
+            guard let indexPath = selectedIndexPath else {return}
+            
+            let record = fetchedResultsController?.objectAtIndexPath(indexPath) as! NSManagedObject
+            updateViewController.record = record
+            updateViewController.managedObjectContext = self.managedObjectContext
+            
         }
     }
 
@@ -100,13 +112,29 @@ extension ViewController: UITableViewDataSource
         }
         
     }
+    
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete
+        {
+            let record = fetchedResultsController?.objectAtIndexPath(indexPath) as! NSManagedObject
+            managedObjectContext.deleteObject(record)
+        }
+    }
 
 }
 
 //MARK:- TableView Delegate
 extension ViewController: UITableViewDelegate
 {
-    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        selectedIndexPath = indexPath
+        performSegueWithIdentifier("SegueUpdateToDoViewController", sender: self)
+    }
 
 }
 
