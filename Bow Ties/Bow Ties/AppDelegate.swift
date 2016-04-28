@@ -31,8 +31,50 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     // Override point for customization after application launch.
+    
+    let viewController = window?.rootViewController as! ViewController
+    
+    viewController.managedContext = self.managedObjectContext
+    
     return true
   }
+    
+    func retrieveBowtie ()
+    {
+        let retrieveRequest = NSFetchRequest(entityName: "Bowtie")
+        
+        do {
+            let ties = try managedObjectContext.executeFetchRequest(retrieveRequest) as! [Bowtie]
+            
+            if ties.count > 0
+            {
+                for bt in ties
+                {
+                    print("Bow tie name: \(bt.name)")
+                }
+            }
+            
+        }
+        catch {
+            print("error: \(error)")
+        }
+        
+    
+    }
+    
+    func saveBowtie ()
+    {
+        let bowtie = NSEntityDescription.insertNewObjectForEntityForName("Bowtie", inManagedObjectContext: self.managedObjectContext) as! Bowtie
+        bowtie.name = "My bow tie"
+        bowtie.lastWorn = NSDate()
+        
+        do {
+            try managedObjectContext.save()
+            
+        } catch {
+            print("Error: \(error)")
+        }
+    }
   
   // MARK: - Core Data stack
   
