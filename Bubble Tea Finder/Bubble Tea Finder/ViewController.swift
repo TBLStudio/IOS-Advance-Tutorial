@@ -33,19 +33,46 @@ class ViewController: UIViewController {
     var coreDataStack: CoreDataStack!
     
     var fetchRequest: NSFetchRequest!
-    var venues: [Venue]!
+    
+    var asyncFetchRequest: NSAsynchronousFetchRequest!
+    
+    var venues: [Venue]! = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let model = coreDataStack.context.persistentStoreCoordinator?.managedObjectModel
-        fetchRequest = model!.fetchRequestTemplateForName("FetchRequest")
-        fetchAndReload()
+//        let model = coreDataStack.context.persistentStoreCoordinator?.managedObjectModel
+//        fetchRequest = model!.fetchRequestTemplateForName("FetchRequest")
+        fetchRequest = NSFetchRequest(entityName: "Venue")
+        
+        asyncFetchRequest = NSAsynchronousFetchRequest(fetchRequest: fetchRequest)
+        { [unowned self] (result: NSAsynchronousFetchResult! ) -> Void in
+            self.venues = result.finalResult as! [Venue]
+            self.tableView.reloadData()
+        }
+        do {
+            try coreDataStack.context.executeRequest(asyncFetchRequest)
+        } catch let error as NSError {
+            print("Could not fetch \(error), \(error.userInfo)")
+        }
+        //fetchAndReload()
+        
+        let batchUpdate = NSBatchUpdateRequest(entityName: "Venue")
+        batchUpdate.propertiesToUpdate = ["favorite" : NSNumber(bool: true)]
+        batchUpdate.affectedStores = coreDataStack.context .persistentStoreCoordinator!.persistentStores
+        batchUpdate.resultType = .UpdatedObjectsCountResultType
+        do {
+            let batchResult = try coreDataStack.context .executeRequest(batchUpdate) as! NSBatchUpdateResult
+            print("Records updated \(batchResult.result!)")
+        }
+        catch let error as NSError {
+                print("Could not update \(error), \(error.userInfo)")
+        }
         
     }
     
     func fetchAndReload() {
-        do { venues =
-            try coreDataStack.context .executeFetchRequest(fetchRequest) as! [Venue]
+        do {
+            venues = try coreDataStack.context .executeFetchRequest(fetchRequest) as! [Venue]
             tableView.reloadData()
         } catch let error as NSError {
             print("Could not fetch \(error), \(error.userInfo)")
@@ -60,6 +87,7 @@ class ViewController: UIViewController {
             let filterVC =
                 navController.topViewController as! FilterViewController
             filterVC.coreDataStack = coreDataStack
+            filterVC.delegate = self
         }
     }
     
@@ -83,4 +111,26 @@ extension ViewController: UITableViewDataSource {
         
         return cell
     }
+}
+
+extension ViewController: FilterViewControllerDelegate
+{
+    func filterViewController(filter: FilterViewController, didSelectPredicate predicate: NSPredicate?, sortDescription: NSSortDescriptor?) {
+        
+        fetchRequest.predicate = nil
+        fetchRequest.sortDescriptors = nil
+        
+        if predicate != nil {
+            fetchRequest.predicate = predicate!
+        }
+        if sortDescription != nil
+        {
+            fetchRequest.sortDescriptors = [sortDescription!]
+        }
+        
+        fetchAndReload()
+        
+        
+    }
+
 }
