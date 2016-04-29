@@ -25,10 +25,22 @@ import CoreData
 import UIKit
 
 class Note : NSManagedObject {
-  @NSManaged var title : NSString!
-  @NSManaged var body : NSString!
-  @NSManaged var dateCreated: NSDate!
-  @NSManaged var displayIndex: NSNumber!
+    @NSManaged var title : NSString!
+    @NSManaged var body : NSString!
+    @NSManaged var dateCreated: NSDate!
+    @NSManaged var displayIndex: NSNumber!
+    @NSManaged var attachments: NSSet
+    
+    var image : UIImage? {
+        return latestAttachment?.image
+    }
+    var latestAttachment: Attachment? {
+        let sortedAttachments = attachments.flatMap {
+            $0 as? Attachment }.sort {
+                $0.0.dateCreated
+                    .compare($0.1.dateCreated) == .OrderedAscending
+        }
+        return sortedAttachments.first }
   
   override func awakeFromInsert() {
     super.awakeFromInsert()

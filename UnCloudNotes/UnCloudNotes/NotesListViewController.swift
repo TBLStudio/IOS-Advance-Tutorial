@@ -24,7 +24,9 @@ import UIKit
 import CoreData
 
 class NotesListViewController: UITableViewController, NSFetchedResultsControllerDelegate {
-  lazy var stack : CoreDataStack = CoreDataStack(modelName:"UnCloudNotesDataModel", storeName:"UnCloudNotes")
+    lazy var stack : CoreDataStack = CoreDataStack(modelName:"UnCloudNotesDataModel", storeName:"UnCloudNotes", options: [
+        NSMigratePersistentStoresAutomaticallyOption: true,
+        NSInferMappingModelAutomaticallyOption: false ])
   
   lazy var notes : NSFetchedResultsController = {
     let request = NSFetchRequest(entityName: "Note")
@@ -50,15 +52,17 @@ class NotesListViewController: UITableViewController, NSFetchedResultsController
     return objects?.count ?? 0
   }
   
-  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    if let cell = tableView.dequeueReusableCellWithIdentifier("NoteCell", forIndexPath: indexPath) as? NoteTableViewCell {
-      if let objects = notes.fetchedObjects {
-        cell.note = objects[indexPath.row] as? Note
-      }
-      return cell
-    }
-    return UITableViewCell()
-  }
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        guard let note = notes.fetchedObjects?[indexPath.row] as? Note
+            else {
+                return UITableViewCell()
+        }
+        let identifier = note.image == nil ? "NoteCell" : "NoteCellImage"
+        if let cell = tableView.dequeueReusableCellWithIdentifier( identifier, forIndexPath: indexPath) as? NoteTableViewCell {
+            cell.note = note
+            return cell
+        }
+        return UITableViewCell() }
   
   func controllerWillChangeContent(controller: NSFetchedResultsController) {
   }
