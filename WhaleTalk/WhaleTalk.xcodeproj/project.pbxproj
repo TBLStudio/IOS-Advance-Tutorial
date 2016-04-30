@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B24BDEFB1CD4628B006B242F /* Contact+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24BDEF91CD4628B006B242F /* Contact+CoreDataProperties.swift */; };
+		B24BDEFC1CD4628B006B242F /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24BDEFA1CD4628B006B242F /* Contact.swift */; };
+		B24BDEFE1CD46746006B242F /* NewChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24BDEFD1CD46746006B242F /* NewChatViewController.swift */; };
+		B24BDF001CD488A2006B242F /* TableViewFetchedResultsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24BDEFF1CD488A2006B242F /* TableViewFetchedResultsDelegate.swift */; };
+		B24BDF021CD48EE8006B242F /* UIViewController+FillWithView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24BDF011CD48EE8006B242F /* UIViewController+FillWithView.swift */; };
 		B27ADE721CCD320F00451580 /* UITableView+Scroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27ADE711CCD320F00451580 /* UITableView+Scroll.swift */; };
 		B27ADE741CCD348A00451580 /* CDHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27ADE731CCD348A00451580 /* CDHelper.swift */; };
 		B2B5DF551CC9E2B0001A1146 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B5DF541CC9E2B0001A1146 /* MessageCell.swift */; };
@@ -26,6 +31,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B24BDEF21CD46267006B242F /* WhaleTalk-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WhaleTalk-Bridging-Header.h"; sourceTree = "<group>"; };
+		B24BDEF91CD4628B006B242F /* Contact+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Contact+CoreDataProperties.swift"; path = "../Contact+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B24BDEFA1CD4628B006B242F /* Contact.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Contact.swift; path = ../Contact.swift; sourceTree = "<group>"; };
+		B24BDEFD1CD46746006B242F /* NewChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewChatViewController.swift; sourceTree = "<group>"; };
+		B24BDEFF1CD488A2006B242F /* TableViewFetchedResultsDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewFetchedResultsDelegate.swift; sourceTree = "<group>"; };
+		B24BDF011CD48EE8006B242F /* UIViewController+FillWithView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+FillWithView.swift"; sourceTree = "<group>"; };
 		B27ADE711CCD320F00451580 /* UITableView+Scroll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Scroll.swift"; sourceTree = "<group>"; };
 		B27ADE731CCD348A00451580 /* CDHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDHelper.swift; sourceTree = "<group>"; };
 		B2B5DF541CC9E2B0001A1146 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
@@ -71,8 +82,10 @@
 			isa = PBXGroup;
 			children = (
 				B27ADE711CCD320F00451580 /* UITableView+Scroll.swift */,
+				B24BDEFF1CD488A2006B242F /* TableViewFetchedResultsDelegate.swift */,
 				B2B5DF541CC9E2B0001A1146 /* MessageCell.swift */,
 				B2E5B2F91CCE1F0C007E9C62 /* ChatCell.swift */,
+				B24BDF011CD48EE8006B242F /* UIViewController+FillWithView.swift */,
 			);
 			name = Custom;
 			sourceTree = "<group>";
@@ -82,6 +95,7 @@
 			children = (
 				B2BCD1231CC8FA28000503E4 /* WhaleTalk */,
 				B2BCD1221CC8FA28000503E4 /* Products */,
+				B24BDEF21CD46267006B242F /* WhaleTalk-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,6 +115,7 @@
 				B2B5DF521CC9D3B3001A1146 /* Model */,
 				B2BCD1241CC8FA28000503E4 /* AppDelegate.swift */,
 				B2BCD1261CC8FA28000503E4 /* ChatViewController.swift */,
+				B24BDEFD1CD46746006B242F /* NewChatViewController.swift */,
 				B2E5B2FB1CCE2532007E9C62 /* AllChatsViewController.swift */,
 				B2BCD1281CC8FA28000503E4 /* Main.storyboard */,
 				B2BCD12D1CC8FA28000503E4 /* LaunchScreen.storyboard */,
@@ -122,6 +137,8 @@
 		B2E5B2F81CCE1858007E9C62 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				B24BDEF91CD4628B006B242F /* Contact+CoreDataProperties.swift */,
+				B24BDEFA1CD4628B006B242F /* Contact.swift */,
 				B2E5B2F61CCE182D007E9C62 /* Message+CoreDataProperties.swift */,
 				B2E5B2EB1CCE0554007E9C62 /* Message.swift */,
 				B2E5B2F01CCE17B6007E9C62 /* Chat+CoreDataProperties.swift */,
@@ -204,10 +221,15 @@
 				B2E5B2F31CCE17B6007E9C62 /* Chat+CoreDataProperties.swift in Sources */,
 				B27ADE721CCD320F00451580 /* UITableView+Scroll.swift in Sources */,
 				B2E5B2FA1CCE1F0C007E9C62 /* ChatCell.swift in Sources */,
+				B24BDF001CD488A2006B242F /* TableViewFetchedResultsDelegate.swift in Sources */,
 				B27ADE741CCD348A00451580 /* CDHelper.swift in Sources */,
+				B24BDEFE1CD46746006B242F /* NewChatViewController.swift in Sources */,
 				B2E5B2F41CCE17B6007E9C62 /* Chat.swift in Sources */,
 				B2E5B2E51CCE0405007E9C62 /* Model.xcdatamodeld in Sources */,
+				B24BDEFC1CD4628B006B242F /* Contact.swift in Sources */,
+				B24BDF021CD48EE8006B242F /* UIViewController+FillWithView.swift in Sources */,
 				B2E5B2FC1CCE2532007E9C62 /* AllChatsViewController.swift in Sources */,
+				B24BDEFB1CD4628B006B242F /* Contact+CoreDataProperties.swift in Sources */,
 				B2B5DF551CC9E2B0001A1146 /* MessageCell.swift in Sources */,
 				B2E5B2ED1CCE0554007E9C62 /* Message.swift in Sources */,
 				B2BCD1271CC8FA28000503E4 /* ChatViewController.swift in Sources */,
@@ -327,10 +349,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = WhaleTalk/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = TBLStudio.WhaleTalk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "WhaleTalk-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -338,10 +363,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = WhaleTalk/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = TBLStudio.WhaleTalk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "WhaleTalk-Bridging-Header.h";
 			};
 			name = Release;
 		};
