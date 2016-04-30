@@ -38,8 +38,8 @@ class ChatViewController: UIViewController {
         do {
             guard let chat = chat else {throw Error.NoChat}
             guard let context = context else {throw Error.NoContext}
-            
             let request = NSFetchRequest(entityName: "Message")
+            request.predicate = NSPredicate(format: "chat=%@", chat)
             request.sortDescriptors = [NSSortDescriptor(key: "timestamp", ascending: false)]
             if let result = try context.executeFetchRequest(request) as? [Message] {
                 for message in result
@@ -179,8 +179,9 @@ class ChatViewController: UIViewController {
         guard let context = context else {return}
         guard let message = NSEntityDescription.insertNewObjectForEntityForName("Message", inManagedObjectContext: context) as? Message else {return}
         message.text = text
-        message.isIncoming = false
         message.timestamp = NSDate()
+        message.chat = chat
+        chat?.lastMessageTime = message.timestamp
         //Save Message
         do {
             try context.save()
@@ -237,6 +238,10 @@ class ChatViewController: UIViewController {
             }
             self.chat = mainContext.objectWithID(chat.objectID) as? Chat
         }
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 }
 
