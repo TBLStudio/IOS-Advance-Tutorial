@@ -16,5 +16,6 @@ extension Contact {
 
     @NSManaged var firstName: String?
     @NSManaged var lastName: String?
+    @NSManaged var chats: NSSet?
 
 }

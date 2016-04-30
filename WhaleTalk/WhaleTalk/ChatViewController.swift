@@ -24,16 +24,24 @@ class ChatViewController: UIViewController {
     
     private let cellIdentifier = "Cell"
     
-    var context: NSManagedObjectContext?
+    private enum Error: ErrorType {
+        case NoChat
+        case NoContext
+    }
     
+    var context: NSManagedObjectContext?
+    var chat : Chat?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         do {
+            guard let chat = chat else {throw Error.NoChat}
+            guard let context = context else {throw Error.NoContext}
+            
             let request = NSFetchRequest(entityName: "Message")
             request.sortDescriptors = [NSSortDescriptor(key: "timestamp", ascending: false)]
-            if let result = try context?.executeFetchRequest(request) as? [Message] {
+            if let result = try context.executeFetchRequest(request) as? [Message] {
                 for message in result
                 {
                     addMessage(message)
@@ -44,7 +52,7 @@ class ChatViewController: UIViewController {
             print("We couldn't fetch")
         }
             
-        
+        automaticallyAdjustsScrollViewInsets = false
         let newMessageArea = UIView()
         newMessageArea.backgroundColor = UIColor.lightGrayColor()
         newMessageArea.translatesAutoresizingMaskIntoConstraints = false
@@ -87,13 +95,18 @@ class ChatViewController: UIViewController {
         tableView.delegate = self
         tableView.estimatedRowHeight = 44
         
+        tableView.backgroundView = UIImageView(image: UIImage(named: "MessageBubble"))
+        tableView.separatorColor = UIColor.clearColor()
+        tableView.sectionHeaderHeight = UITableViewAutomaticDimension
+        tableView.estimatedSectionHeaderHeight = 25
+        
         //Setup Layout TableView
         tableView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(tableView)
         
         //Contraint for Tableview
         let tableViewContrains: [NSLayoutConstraint] = [
-                tableView.topAnchor.constraintEqualToAnchor(view.topAnchor),
+                tableView.topAnchor.constraintEqualToAnchor(topLayoutGuide.bottomAnchor),
                 tableView.leadingAnchor.constraintEqualToAnchor(view.leadingAnchor),
                 tableView.trailingAnchor.constraintEqualToAnchor(view.trailingAnchor),
                 tableView.bottomAnchor.constraintEqualToAnchor(newMessageArea.topAnchor)
