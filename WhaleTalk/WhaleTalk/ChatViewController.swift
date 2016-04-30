@@ -118,12 +118,20 @@ class ChatViewController: UIViewController {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ChatViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
         
+        if let mainContext = context?.parentContext ?? context
+        {
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ChatViewController.contextUpdated(_:)), name: NSManagedObjectContextObjectsDidChangeNotification, object: mainContext)
+        }
+        
+        
         let tabRecognizer = UITapGestureRecognizer(target: self, action: #selector(ChatViewController.handleSingleTab(_:)))
         tabRecognizer.numberOfTapsRequired = 1
         view.addGestureRecognizer(tabRecognizer)
 
         
     }
+    
+   
     
     override func viewDidAppear(animated: Bool) {
         tableView.scrollToBottom()
@@ -167,13 +175,12 @@ class ChatViewController: UIViewController {
     func pressdSend (button: UIButton)
     {
         guard let text = newMessageField.text where text.characters.count > 0 else {return}
+        checkTemporaryContext()
         guard let context = context else {return}
         guard let message = NSEntityDescription.insertNewObjectForEntityForName("Message", inManagedObjectContext: context) as? Message else {return}
         message.text = text
         message.isIncoming = false
         message.timestamp = NSDate()
-        addMessage(message)
-        
         //Save Message
         do {
             try context.save()
@@ -182,8 +189,6 @@ class ChatViewController: UIViewController {
             return
         }
         newMessageField.text = ""
-        tableView.reloadData()
-        tableView.scrollToBottom()
         view.endEditing(true)
         
     }
@@ -202,14 +207,37 @@ class ChatViewController: UIViewController {
             dates = dates.sort({$0.earlierDate($1) == $0})
             messages = [Message]()
         }
-        
         messages?.append(message)
         messages?.sortInPlace {$0.timestamp!.earlierDate($1.timestamp!) == $0.timestamp}
         sections[startDay] = messages
-        
     }
     
+    func contextUpdated (notification: NSNotification) {
+        guard let set = (notification.userInfo![NSInsertedObjectsKey] as? NSSet) else {return}
+        let objects = set.allObjects
+        for obj in objects {
+            guard let message = obj as? Message else {continue}
+            if message.chat?.objectID == chat?.objectID {
+                addMessage(message)
+            }
+        }
+        tableView.reloadData()
+        tableView.scrollToBottom()
+    }
     
+    func checkTemporaryContext () {
+        if let mainContext = context?.parentContext, chat = chat {
+            let tempContext = context
+            context = mainContext
+            do {
+                try tempContext?.save()
+            }
+            catch {
+                print("Error saving temp context")
+            }
+            self.chat = mainContext.objectWithID(chat.objectID) as? Chat
+        }
+    }
 }
 
 extension ChatViewController: UITableViewDataSource
