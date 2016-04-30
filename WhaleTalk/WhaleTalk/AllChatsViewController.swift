@@ -62,9 +62,7 @@ class AllChatsViewController: UIViewController, TableViewFetchedResultsDisplayer
     func newChat ()
     {
         let vc = NewChatViewController()
-        let chatContext = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.MainQueueConcurrencyType)
-        chatContext.parentContext = context
-        
+        vc.context = context
         vc.chatCreationDelegate = self
         let navVC = UINavigationController(rootViewController: vc)
         presentViewController(navVC, animated: true, completion: nil)
