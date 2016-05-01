@@ -11,6 +11,11 @@ import CoreData
 
 
 class Chat: NSManagedObject {
+    
+    var isGroupChat: Bool {
+        return participants?.count > 1
+    
+    }
 
 // Insert code here to add functionality to your managed object subclass
     var lastMessage: Message? {
