@@ -21,6 +21,7 @@
 		B2BCD1271CC8FA28000503E4 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BCD1261CC8FA28000503E4 /* ChatViewController.swift */; };
 		B2BCD12A1CC8FA28000503E4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2BCD1281CC8FA28000503E4 /* Main.storyboard */; };
 		B2BCD12F1CC8FA28000503E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2BCD12D1CC8FA28000503E4 /* LaunchScreen.storyboard */; };
+		B2C892771CD5D3F5004262F9 /* NewGroupParticipantsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C892761CD5D3F5004262F9 /* NewGroupParticipantsViewController.swift */; };
 		B2E5B2E21CCE01E4007E9C62 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2E5B2E11CCE01E4007E9C62 /* CoreData.framework */; };
 		B2E5B2E51CCE0405007E9C62 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B2E5B2E31CCE0405007E9C62 /* Model.xcdatamodeld */; };
 		B2E5B2ED1CCE0554007E9C62 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E5B2EB1CCE0554007E9C62 /* Message.swift */; };
@@ -50,6 +51,8 @@
 		B2BCD1291CC8FA28000503E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B2BCD12E1CC8FA28000503E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B2BCD1301CC8FA28000503E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B2C892761CD5D3F5004262F9 /* NewGroupParticipantsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGroupParticipantsViewController.swift; sourceTree = "<group>"; };
+		B2C892781CD5D87A004262F9 /* TestUI.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = TestUI.playground; sourceTree = "<group>"; };
 		B2E5B2E11CCE01E4007E9C62 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		B2E5B2E41CCE0405007E9C62 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		B2E5B2EB1CCE0554007E9C62 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -175,6 +178,7 @@
 		B2F49B951CD5122F0084435F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B2C892781CD5D87A004262F9 /* TestUI.playground */,
 				B2BCD1281CC8FA28000503E4 /* Main.storyboard */,
 				B2BCD12D1CC8FA28000503E4 /* LaunchScreen.storyboard */,
 				B2E5B2E31CCE0405007E9C62 /* Model.xcdatamodeld */,
@@ -189,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				B2F49B971CD520B60084435F /* NewGroupViewController.swift */,
+				B2C892761CD5D3F5004262F9 /* NewGroupParticipantsViewController.swift */,
 			);
 			name = NewGroupVC;
 			sourceTree = "<group>";
@@ -271,6 +276,7 @@
 				B27ADE741CCD348A00451580 /* CDHelper.swift in Sources */,
 				B24BDEFE1CD46746006B242F /* NewChatViewController.swift in Sources */,
 				B2E5B2F41CCE17B6007E9C62 /* Chat.swift in Sources */,
+				B2C892771CD5D3F5004262F9 /* NewGroupParticipantsViewController.swift in Sources */,
 				B2E5B2E51CCE0405007E9C62 /* Model.xcdatamodeld in Sources */,
 				B24BDEFC1CD4628B006B242F /* Contact.swift in Sources */,
 				B24BDF021CD48EE8006B242F /* UIViewController+FillWithView.swift in Sources */,
