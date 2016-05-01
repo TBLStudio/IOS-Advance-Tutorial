@@ -36,6 +36,8 @@
 		B2F2F5091CD6494C00BE48F0 /* ContextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F2F5081CD6494C00BE48F0 /* ContextViewController.swift */; };
 		B2F2F50B1CD64D5600BE48F0 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F2F50A1CD64D5600BE48F0 /* ContactsViewController.swift */; };
 		B2F2F50D1CD661E000BE48F0 /* TableViewFetchedResultsDisplayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F2F50C1CD661E000BE48F0 /* TableViewFetchedResultsDisplayer.swift */; };
+		B2F2F50F1CD66DF200BE48F0 /* ContactsSearchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F2F50E1CD66DF200BE48F0 /* ContactsSearchResultsController.swift */; };
+		B2F2F5111CD6741200BE48F0 /* ContactSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F2F5101CD6741200BE48F0 /* ContactSelector.swift */; };
 		B2F49B981CD520B60084435F /* NewGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F49B971CD520B60084435F /* NewGroupViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +75,8 @@
 		B2F2F5081CD6494C00BE48F0 /* ContextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContextViewController.swift; sourceTree = "<group>"; };
 		B2F2F50A1CD64D5600BE48F0 /* ContactsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
 		B2F2F50C1CD661E000BE48F0 /* TableViewFetchedResultsDisplayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewFetchedResultsDisplayer.swift; sourceTree = "<group>"; };
+		B2F2F50E1CD66DF200BE48F0 /* ContactsSearchResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsSearchResultsController.swift; sourceTree = "<group>"; };
+		B2F2F5101CD6741200BE48F0 /* ContactSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactSelector.swift; sourceTree = "<group>"; };
 		B2F49B971CD520B60084435F /* NewGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGroupViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -116,9 +120,6 @@
 			isa = PBXGroup;
 			children = (
 				B2BCD1241CC8FA28000503E4 /* AppDelegate.swift */,
-				B2F2F50A1CD64D5600BE48F0 /* ContactsViewController.swift */,
-				B2F2F5081CD6494C00BE48F0 /* ContextViewController.swift */,
-				B2F2F50C1CD661E000BE48F0 /* TableViewFetchedResultsDisplayer.swift */,
 				B2F2F5071CD648DB00BE48F0 /* NewGroupParticipantsVC */,
 				B2F49B961CD5207F0084435F /* NewGroupVC */,
 				B2F49B8E1CD510C80084435F /* ContactVC */,
@@ -144,6 +145,8 @@
 		B2F49B8E1CD510C80084435F /* ContactVC */ = {
 			isa = PBXGroup;
 			children = (
+				B2F2F50A1CD64D5600BE48F0 /* ContactsViewController.swift */,
+				B2F2F50E1CD66DF200BE48F0 /* ContactsSearchResultsController.swift */,
 			);
 			name = ContactVC;
 			sourceTree = "<group>";
@@ -177,6 +180,9 @@
 		B2F49B921CD5111F0084435F /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				B2F2F5101CD6741200BE48F0 /* ContactSelector.swift */,
+				B2F2F50C1CD661E000BE48F0 /* TableViewFetchedResultsDisplayer.swift */,
+				B2F2F5081CD6494C00BE48F0 /* ContextViewController.swift */,
 				B24BDEFF1CD488A2006B242F /* TableViewFetchedResultsDelegate.swift */,
 				B24BDF0B1CD4AA3A006B242F /* ChatCreationDelegate.swift */,
 			);
@@ -316,6 +322,8 @@
 				B24BDF0A1CD49E2C006B242F /* Chat+CoreDataProperties.swift in Sources */,
 				B2F49B981CD520B60084435F /* NewGroupViewController.swift in Sources */,
 				B2E5B2ED1CCE0554007E9C62 /* Message.swift in Sources */,
+				B2F2F5111CD6741200BE48F0 /* ContactSelector.swift in Sources */,
+				B2F2F50F1CD66DF200BE48F0 /* ContactsSearchResultsController.swift in Sources */,
 				B2BCD1271CC8FA28000503E4 /* ChatViewController.swift in Sources */,
 				B2E5B2F71CCE182D007E9C62 /* Message+CoreDataProperties.swift in Sources */,
 				B2BCD1251CC8FA28000503E4 /* AppDelegate.swift in Sources */,

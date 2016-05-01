@@ -11,7 +11,7 @@ import CoreData
 import ContactsUI
 import Contacts
 
-class ContactsViewController: UIViewController, ContextViewController, TableViewFetchedResultsDisplayer {
+class ContactsViewController: UIViewController, ContextViewController, TableViewFetchedResultsDisplayer, ContactSelector {
     
     var context: NSManagedObjectContext?
     
@@ -23,6 +23,8 @@ class ContactsViewController: UIViewController, ContextViewController, TableView
     
     private var fetchedResultsDelegate: NSFetchedResultsControllerDelegate?
     
+    private var searchController: UISearchController?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.topItem?.title = "All Contacts"
@@ -30,6 +32,7 @@ class ContactsViewController: UIViewController, ContextViewController, TableView
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
         tableView.tableFooterView = UIView(frame: CGRectZero)
         tableView.dataSource = self
+        tableView.delegate = self
         automaticallyAdjustsScrollViewInsets = false
         fillViewWith(tableView)
         
@@ -51,6 +54,14 @@ class ContactsViewController: UIViewController, ContextViewController, TableView
             
         }
         
+        let resultsVC = ContactsSearchResultsController()
+        resultsVC.contacts = fetchedResultsController?.fetchedObjects as! [Contact]
+        resultsVC.contactSelector = self
+        searchController = UISearchController(searchResultsController: resultsVC)
+        searchController?.searchResultsUpdater = resultsVC
+        definesPresentationContext = true
+        tableView.tableHeaderView = searchController?.searchBar
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -58,8 +69,26 @@ class ContactsViewController: UIViewController, ContextViewController, TableView
     }
     
     func newContact () {
+        let vc = CNContactViewController(forNewContact: nil)
+        vc.delegate = self
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func selectedContact(contact: Contact) {
+        guard let id = contact.contactId else {return}
+        let store = CNContactStore()
+        let cnContact: CNContact
+        do {
+            cnContact = try store.unifiedContactWithIdentifier(id, keysToFetch: [CNContactViewController.descriptorForRequiredKeys()])
         
-        
+        }
+        catch {
+            return
+        }
+        let vc = CNContactViewController(forContact: cnContact)
+        vc.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(vc, animated: true)
+        searchController?.active = false
     }
     
     
@@ -100,3 +129,37 @@ extension ContactsViewController: UITableViewDataSource {
         return true
     }
 }
+
+extension ContactsViewController: UITableViewDelegate {
+    func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        guard let contact = fetchedResultsController?.objectAtIndexPath(indexPath) as? Contact else {return}
+        selectedContact(contact)
+        tableView.deselectRowAtIndexPath(indexPath, animated: true
+        )
+    }
+}
+
+
+extension ContactsViewController: CNContactViewControllerDelegate {
+
+    func contactViewController(viewController: CNContactViewController, didCompleteWithContact contact: CNContact?) {
+        if contact == nil {
+            navigationController?.popViewControllerAnimated(true)
+        }
+    }
+    
+    
+}
+
+
+
+
+
+
+
+
+
