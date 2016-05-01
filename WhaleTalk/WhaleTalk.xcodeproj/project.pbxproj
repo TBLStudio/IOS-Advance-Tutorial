@@ -39,6 +39,8 @@
 		B2F2F50F1CD66DF200BE48F0 /* ContactsSearchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F2F50E1CD66DF200BE48F0 /* ContactsSearchResultsController.swift */; };
 		B2F2F5111CD6741200BE48F0 /* ContactSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F2F5101CD6741200BE48F0 /* ContactSelector.swift */; };
 		B2F2F5131CD67DF700BE48F0 /* Syncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F2F5121CD67DF700BE48F0 /* Syncer.swift */; };
+		B2F2F5151CD680EC00BE48F0 /* FavoriteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F2F5141CD680EC00BE48F0 /* FavoriteCell.swift */; };
+		B2F2F5171CD682D300BE48F0 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F2F5161CD682D300BE48F0 /* FavoriteViewController.swift */; };
 		B2F49B981CD520B60084435F /* NewGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F49B971CD520B60084435F /* NewGroupViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -79,6 +81,8 @@
 		B2F2F50E1CD66DF200BE48F0 /* ContactsSearchResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsSearchResultsController.swift; sourceTree = "<group>"; };
 		B2F2F5101CD6741200BE48F0 /* ContactSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactSelector.swift; sourceTree = "<group>"; };
 		B2F2F5121CD67DF700BE48F0 /* Syncer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Syncer.swift; sourceTree = "<group>"; };
+		B2F2F5141CD680EC00BE48F0 /* FavoriteCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteCell.swift; sourceTree = "<group>"; };
+		B2F2F5161CD682D300BE48F0 /* FavoriteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		B2F49B971CD520B60084435F /* NewGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGroupViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -123,6 +127,8 @@
 			children = (
 				B2BCD1241CC8FA28000503E4 /* AppDelegate.swift */,
 				B2F2F5121CD67DF700BE48F0 /* Syncer.swift */,
+				B2F2F5141CD680EC00BE48F0 /* FavoriteCell.swift */,
+				B2F2F5161CD682D300BE48F0 /* FavoriteViewController.swift */,
 				B2F2F5071CD648DB00BE48F0 /* NewGroupParticipantsVC */,
 				B2F49B961CD5207F0084435F /* NewGroupVC */,
 				B2F49B8E1CD510C80084435F /* ContactVC */,
@@ -327,10 +333,12 @@
 				B2F49B981CD520B60084435F /* NewGroupViewController.swift in Sources */,
 				B2E5B2ED1CCE0554007E9C62 /* Message.swift in Sources */,
 				B2F2F5111CD6741200BE48F0 /* ContactSelector.swift in Sources */,
+				B2F2F5171CD682D300BE48F0 /* FavoriteViewController.swift in Sources */,
 				B2F2F50F1CD66DF200BE48F0 /* ContactsSearchResultsController.swift in Sources */,
 				B2BCD1271CC8FA28000503E4 /* ChatViewController.swift in Sources */,
 				B2E5B2F71CCE182D007E9C62 /* Message+CoreDataProperties.swift in Sources */,
 				B2BCD1251CC8FA28000503E4 /* AppDelegate.swift in Sources */,
+				B2F2F5151CD680EC00BE48F0 /* FavoriteCell.swift in Sources */,
 				B24BDF0C1CD4AA3A006B242F /* ChatCreationDelegate.swift in Sources */,
 				B2F2F50B1CD64D5600BE48F0 /* ContactsViewController.swift in Sources */,
 			);
