@@ -13,6 +13,8 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    private var contactImporter: ContactImporter?
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -29,7 +31,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let contactsContext = NSManagedObjectContext (concurrencyType: .PrivateQueueConcurrencyType)
         contactsContext.persistentStoreCoordinator = CDHelper.sharedInstance.coordinator
+        contactImporter = ContactImporter(context: context)
         importContact(contactsContext)
+        contactImporter?.listenForChanges()
         return true
     }
 
@@ -57,10 +61,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func importContact(context: NSManagedObjectContext) {
         let dataSeeded = NSUserDefaults.standardUserDefaults().boolForKey("dataSeeded")
-        guard !dataSeeded else {return}
         
-        let contactImporter = ContactImporter(context: context)
-        contactImporter.fetch()
+        guard !dataSeeded else {return}
+        contactImporter?.fetch()
         NSUserDefaults.standardUserDefaults().setObject("true", forKey: "dataSeeded")
     }
 

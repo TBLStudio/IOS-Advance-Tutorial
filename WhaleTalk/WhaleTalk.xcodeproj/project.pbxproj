@@ -110,7 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				B2BCD1241CC8FA28000503E4 /* AppDelegate.swift */,
-				B2F2F5011CD613CD00BE48F0 /* ContactImporter.swift */,
+				B2F2F5071CD648DB00BE48F0 /* NewGroupParticipantsVC */,
 				B2F49B961CD5207F0084435F /* NewGroupVC */,
 				B2F49B8E1CD510C80084435F /* ContactVC */,
 				B2F49B8F1CD510D20084435F /* AllChatsVC */,
@@ -122,6 +122,14 @@
 				B2F49B951CD5122F0084435F /* Supporting Files */,
 			);
 			path = WhaleTalk;
+			sourceTree = "<group>";
+		};
+		B2F2F5071CD648DB00BE48F0 /* NewGroupParticipantsVC */ = {
+			isa = PBXGroup;
+			children = (
+				B2C892761CD5D3F5004262F9 /* NewGroupParticipantsViewController.swift */,
+			);
+			name = NewGroupParticipantsVC;
 			sourceTree = "<group>";
 		};
 		B2F49B8E1CD510C80084435F /* ContactVC */ = {
@@ -169,6 +177,7 @@
 		B2F49B931CD511450084435F /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				B2F2F5011CD613CD00BE48F0 /* ContactImporter.swift */,
 				B27ADE711CCD320F00451580 /* UITableView+Scroll.swift */,
 				B24BDF011CD48EE8006B242F /* UIViewController+FillWithView.swift */,
 				B27ADE731CCD348A00451580 /* CDHelper.swift */,
@@ -202,7 +211,6 @@
 			isa = PBXGroup;
 			children = (
 				B2F49B971CD520B60084435F /* NewGroupViewController.swift */,
-				B2C892761CD5D3F5004262F9 /* NewGroupParticipantsViewController.swift */,
 			);
 			name = NewGroupVC;
 			sourceTree = "<group>";

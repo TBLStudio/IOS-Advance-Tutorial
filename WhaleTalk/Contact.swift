@@ -12,8 +12,8 @@ import CoreData
 @objc(Contact)
 class Contact: NSManagedObject {
     var sortLetter: String {
-        let letter = lastName?.characters.first ?? firstName?.characters.first
-        let s = String(letter!)
+        let letter = (lastName?.characters.first ?? firstName?.characters.first) ?? "#"
+        let s = String(letter)
         return s
     }
     var fullName: String {
