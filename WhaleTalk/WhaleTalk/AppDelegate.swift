@@ -19,21 +19,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        let vc = AllChatsViewController()
-        //Fake
-        //let vc = NewChatViewController()
+        let mainContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
+        mainContext.persistentStoreCoordinator = CDHelper.sharedInstance.coordinator
         
-        let nav = UINavigationController(rootViewController: vc)
-        window?.rootViewController = nav
-        let context = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.MainQueueConcurrencyType)
-        context.persistentStoreCoordinator = CDHelper.sharedInstance.coordinator
-        vc.context = context
         
         let contactsContext = NSManagedObjectContext (concurrencyType: .PrivateQueueConcurrencyType)
         contactsContext.persistentStoreCoordinator = CDHelper.sharedInstance.coordinator
-        contactImporter = ContactImporter(context: context)
+        contactImporter = ContactImporter(context: contactsContext)
         importContact(contactsContext)
         contactImporter?.listenForChanges()
+        
+        let tabController = UITabBarController()
+        let vcData: [(UIViewController, UIImage, String)] = [
+            (ContactsViewController(), UIImage(named: "contact_icon")!, "Contacts"),
+            (AllChatsViewController(), UIImage(named: "chat_icon")!, "Chats")
+        ]
+        
+        let vcs = vcData.map {
+            (vc: UIViewController, image: UIImage, title: String) -> UINavigationController in
+            if var vc = vc as? ContextViewController {
+                vc.context = mainContext
+            }
+            let nav = UINavigationController(rootViewController: vc)
+            nav.tabBarItem.image = image
+            nav.title = title
+            return nav
+        }
+        
+        tabController.viewControllers = vcs
+        window?.rootViewController = tabController
+        
         return true
     }
 

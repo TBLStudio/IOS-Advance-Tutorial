@@ -33,6 +33,8 @@
 		B2F2F5021CD613CD00BE48F0 /* ContactImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F2F5011CD613CD00BE48F0 /* ContactImporter.swift */; };
 		B2F2F5051CD61A9100BE48F0 /* PhoneNumber+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F2F5031CD61A9100BE48F0 /* PhoneNumber+CoreDataProperties.swift */; };
 		B2F2F5061CD61A9100BE48F0 /* PhoneNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F2F5041CD61A9100BE48F0 /* PhoneNumber.swift */; };
+		B2F2F5091CD6494C00BE48F0 /* ContextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F2F5081CD6494C00BE48F0 /* ContextViewController.swift */; };
+		B2F2F50B1CD64D5600BE48F0 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F2F50A1CD64D5600BE48F0 /* ContactsViewController.swift */; };
 		B2F49B981CD520B60084435F /* NewGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F49B971CD520B60084435F /* NewGroupViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +69,8 @@
 		B2F2F5011CD613CD00BE48F0 /* ContactImporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactImporter.swift; sourceTree = "<group>"; };
 		B2F2F5031CD61A9100BE48F0 /* PhoneNumber+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhoneNumber+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B2F2F5041CD61A9100BE48F0 /* PhoneNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneNumber.swift; sourceTree = "<group>"; };
+		B2F2F5081CD6494C00BE48F0 /* ContextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContextViewController.swift; sourceTree = "<group>"; };
+		B2F2F50A1CD64D5600BE48F0 /* ContactsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
 		B2F49B971CD520B60084435F /* NewGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGroupViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -110,6 +114,8 @@
 			isa = PBXGroup;
 			children = (
 				B2BCD1241CC8FA28000503E4 /* AppDelegate.swift */,
+				B2F2F50A1CD64D5600BE48F0 /* ContactsViewController.swift */,
+				B2F2F5081CD6494C00BE48F0 /* ContextViewController.swift */,
 				B2F2F5071CD648DB00BE48F0 /* NewGroupParticipantsVC */,
 				B2F49B961CD5207F0084435F /* NewGroupVC */,
 				B2F49B8E1CD510C80084435F /* ContactVC */,
@@ -288,6 +294,7 @@
 			files = (
 				B27ADE721CCD320F00451580 /* UITableView+Scroll.swift in Sources */,
 				B2F2F5021CD613CD00BE48F0 /* ContactImporter.swift in Sources */,
+				B2F2F5091CD6494C00BE48F0 /* ContextViewController.swift in Sources */,
 				B24BDF071CD49E04006B242F /* Contact+CoreDataProperties.swift in Sources */,
 				B2E5B2FA1CCE1F0C007E9C62 /* ChatCell.swift in Sources */,
 				B24BDF001CD488A2006B242F /* TableViewFetchedResultsDelegate.swift in Sources */,
@@ -309,6 +316,7 @@
 				B2E5B2F71CCE182D007E9C62 /* Message+CoreDataProperties.swift in Sources */,
 				B2BCD1251CC8FA28000503E4 /* AppDelegate.swift in Sources */,
 				B24BDF0C1CD4AA3A006B242F /* ChatCreationDelegate.swift in Sources */,
+				B2F2F50B1CD64D5600BE48F0 /* ContactsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

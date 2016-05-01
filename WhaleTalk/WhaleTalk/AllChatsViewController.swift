@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class AllChatsViewController: UIViewController, TableViewFetchedResultsDisplayer, ChatCreationDelegate {
+class AllChatsViewController: UIViewController, TableViewFetchedResultsDisplayer, ChatCreationDelegate, ContextViewController {
     
     var context: NSManagedObjectContext?
     
@@ -100,6 +100,7 @@ class AllChatsViewController: UIViewController, TableViewFetchedResultsDisplayer
         let vc = ChatViewController()
         vc.context = context
         vc.chat = chat
+        vc.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -161,14 +162,13 @@ extension AllChatsViewController: UITableViewDataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let sections = fetchedResultsController?.sections else {return 0}
         let currentSection = sections[section]
-        return currentSection.numberOfObjects
+        return currentSection.numberOfObjects ?? 0
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
         configureCell(cell, atIndexPath: indexPath)
         return cell
     }
-
 }
 
 extension AllChatsViewController: UITableViewDelegate
@@ -184,6 +184,7 @@ extension AllChatsViewController: UITableViewDelegate
         let vc = ChatViewController()
         vc.context = context
         vc.chat = chat
+        vc.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(vc, animated: true)
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
