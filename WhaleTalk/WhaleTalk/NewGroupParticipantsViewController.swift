@@ -118,7 +118,6 @@ class NewGroupParticipantsViewController: UIViewController {
         chat.participants = NSSet(array: selectedContacts)
         chatCreationDelegate?.created(chat: chat, inContext: context)
         dismissViewControllerAnimated(true, completion: nil)
-    
     }
     
 

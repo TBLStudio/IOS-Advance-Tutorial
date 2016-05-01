@@ -30,6 +30,9 @@
 		B2E5B2F71CCE182D007E9C62 /* Message+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E5B2F61CCE182D007E9C62 /* Message+CoreDataProperties.swift */; };
 		B2E5B2FA1CCE1F0C007E9C62 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E5B2F91CCE1F0C007E9C62 /* ChatCell.swift */; };
 		B2E5B2FC1CCE2532007E9C62 /* AllChatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E5B2FB1CCE2532007E9C62 /* AllChatsViewController.swift */; };
+		B2F2F5021CD613CD00BE48F0 /* ContactImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F2F5011CD613CD00BE48F0 /* ContactImporter.swift */; };
+		B2F2F5051CD61A9100BE48F0 /* PhoneNumber+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F2F5031CD61A9100BE48F0 /* PhoneNumber+CoreDataProperties.swift */; };
+		B2F2F5061CD61A9100BE48F0 /* PhoneNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F2F5041CD61A9100BE48F0 /* PhoneNumber.swift */; };
 		B2F49B981CD520B60084435F /* NewGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F49B971CD520B60084435F /* NewGroupViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -61,6 +64,9 @@
 		B2E5B2F61CCE182D007E9C62 /* Message+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Message+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B2E5B2F91CCE1F0C007E9C62 /* ChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		B2E5B2FB1CCE2532007E9C62 /* AllChatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllChatsViewController.swift; sourceTree = "<group>"; };
+		B2F2F5011CD613CD00BE48F0 /* ContactImporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactImporter.swift; sourceTree = "<group>"; };
+		B2F2F5031CD61A9100BE48F0 /* PhoneNumber+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PhoneNumber+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B2F2F5041CD61A9100BE48F0 /* PhoneNumber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneNumber.swift; sourceTree = "<group>"; };
 		B2F49B971CD520B60084435F /* NewGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGroupViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -79,6 +85,8 @@
 		B2BCD1181CC8FA28000503E4 = {
 			isa = PBXGroup;
 			children = (
+				B2F2F5031CD61A9100BE48F0 /* PhoneNumber+CoreDataProperties.swift */,
+				B2F2F5041CD61A9100BE48F0 /* PhoneNumber.swift */,
 				B24BDF051CD49E04006B242F /* Contact+CoreDataProperties.swift */,
 				B24BDEFA1CD4628B006B242F /* Contact.swift */,
 				B2E5B2F61CCE182D007E9C62 /* Message+CoreDataProperties.swift */,
@@ -102,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				B2BCD1241CC8FA28000503E4 /* AppDelegate.swift */,
+				B2F2F5011CD613CD00BE48F0 /* ContactImporter.swift */,
 				B2F49B961CD5207F0084435F /* NewGroupVC */,
 				B2F49B8E1CD510C80084435F /* ContactVC */,
 				B2F49B8F1CD510D20084435F /* AllChatsVC */,
@@ -270,6 +279,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B27ADE721CCD320F00451580 /* UITableView+Scroll.swift in Sources */,
+				B2F2F5021CD613CD00BE48F0 /* ContactImporter.swift in Sources */,
 				B24BDF071CD49E04006B242F /* Contact+CoreDataProperties.swift in Sources */,
 				B2E5B2FA1CCE1F0C007E9C62 /* ChatCell.swift in Sources */,
 				B24BDF001CD488A2006B242F /* TableViewFetchedResultsDelegate.swift in Sources */,
@@ -277,10 +287,12 @@
 				B24BDEFE1CD46746006B242F /* NewChatViewController.swift in Sources */,
 				B2E5B2F41CCE17B6007E9C62 /* Chat.swift in Sources */,
 				B2C892771CD5D3F5004262F9 /* NewGroupParticipantsViewController.swift in Sources */,
+				B2F2F5051CD61A9100BE48F0 /* PhoneNumber+CoreDataProperties.swift in Sources */,
 				B2E5B2E51CCE0405007E9C62 /* Model.xcdatamodeld in Sources */,
 				B24BDEFC1CD4628B006B242F /* Contact.swift in Sources */,
 				B24BDF021CD48EE8006B242F /* UIViewController+FillWithView.swift in Sources */,
 				B2E5B2FC1CCE2532007E9C62 /* AllChatsViewController.swift in Sources */,
+				B2F2F5061CD61A9100BE48F0 /* PhoneNumber.swift in Sources */,
 				B2B5DF551CC9E2B0001A1146 /* MessageCell.swift in Sources */,
 				B24BDF0A1CD49E2C006B242F /* Chat+CoreDataProperties.swift in Sources */,
 				B2F49B981CD520B60084435F /* NewGroupViewController.swift in Sources */,
