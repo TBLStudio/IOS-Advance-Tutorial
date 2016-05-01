@@ -15,16 +15,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     private var contactImporter: ContactImporter?
-
+    
+    private var contactSyncer: Syncer?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        //Main Context
         let mainContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
         mainContext.persistentStoreCoordinator = CDHelper.sharedInstance.coordinator
         
-        
+        //Background Context
         let contactsContext = NSManagedObjectContext (concurrencyType: .PrivateQueueConcurrencyType)
         contactsContext.persistentStoreCoordinator = CDHelper.sharedInstance.coordinator
+        
+        
+        contactSyncer = Syncer(mainContext: mainContext, backgroundContext: contactsContext)
+        
         contactImporter = ContactImporter(context: contactsContext)
         importContact(contactsContext)
         contactImporter?.listenForChanges()

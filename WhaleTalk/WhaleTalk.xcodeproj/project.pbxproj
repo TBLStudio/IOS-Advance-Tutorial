@@ -38,6 +38,7 @@
 		B2F2F50D1CD661E000BE48F0 /* TableViewFetchedResultsDisplayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F2F50C1CD661E000BE48F0 /* TableViewFetchedResultsDisplayer.swift */; };
 		B2F2F50F1CD66DF200BE48F0 /* ContactsSearchResultsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F2F50E1CD66DF200BE48F0 /* ContactsSearchResultsController.swift */; };
 		B2F2F5111CD6741200BE48F0 /* ContactSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F2F5101CD6741200BE48F0 /* ContactSelector.swift */; };
+		B2F2F5131CD67DF700BE48F0 /* Syncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F2F5121CD67DF700BE48F0 /* Syncer.swift */; };
 		B2F49B981CD520B60084435F /* NewGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F49B971CD520B60084435F /* NewGroupViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -77,6 +78,7 @@
 		B2F2F50C1CD661E000BE48F0 /* TableViewFetchedResultsDisplayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewFetchedResultsDisplayer.swift; sourceTree = "<group>"; };
 		B2F2F50E1CD66DF200BE48F0 /* ContactsSearchResultsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsSearchResultsController.swift; sourceTree = "<group>"; };
 		B2F2F5101CD6741200BE48F0 /* ContactSelector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactSelector.swift; sourceTree = "<group>"; };
+		B2F2F5121CD67DF700BE48F0 /* Syncer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Syncer.swift; sourceTree = "<group>"; };
 		B2F49B971CD520B60084435F /* NewGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGroupViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -120,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				B2BCD1241CC8FA28000503E4 /* AppDelegate.swift */,
+				B2F2F5121CD67DF700BE48F0 /* Syncer.swift */,
 				B2F2F5071CD648DB00BE48F0 /* NewGroupParticipantsVC */,
 				B2F49B961CD5207F0084435F /* NewGroupVC */,
 				B2F49B8E1CD510C80084435F /* ContactVC */,
@@ -315,6 +318,7 @@
 				B2F2F5051CD61A9100BE48F0 /* PhoneNumber+CoreDataProperties.swift in Sources */,
 				B2E5B2E51CCE0405007E9C62 /* Model.xcdatamodeld in Sources */,
 				B24BDEFC1CD4628B006B242F /* Contact.swift in Sources */,
+				B2F2F5131CD67DF700BE48F0 /* Syncer.swift in Sources */,
 				B24BDF021CD48EE8006B242F /* UIViewController+FillWithView.swift in Sources */,
 				B2E5B2FC1CCE2532007E9C62 /* AllChatsViewController.swift in Sources */,
 				B2F2F5061CD61A9100BE48F0 /* PhoneNumber.swift in Sources */,
