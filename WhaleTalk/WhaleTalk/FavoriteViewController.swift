@@ -41,7 +41,7 @@ class FavoriteViewController: UIViewController , TableViewFetchedResultsDisplaye
         
         if let context = context {
             let request = NSFetchRequest(entityName: "Contact")
-            request.predicate = NSPredicate(format: "favorite = true")
+            request.predicate = NSPredicate(format: "storageId != nil AND favorite = true")
             request.sortDescriptors = [
                 NSSortDescriptor(key: "lastName", ascending: true),
                 NSSortDescriptor(key: "firstName", ascending: true)]

@@ -31,6 +31,7 @@
 		B2BCD12A1CC8FA28000503E4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2BCD1281CC8FA28000503E4 /* Main.storyboard */; };
 		B2BCD12F1CC8FA28000503E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2BCD12D1CC8FA28000503E4 /* LaunchScreen.storyboard */; };
 		B2C892771CD5D3F5004262F9 /* NewGroupParticipantsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C892761CD5D3F5004262F9 /* NewGroupParticipantsViewController.swift */; };
+		B2CDB84A1CD73C8300C61321 /* FirebaseModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CDB8491CD73C8300C61321 /* FirebaseModels.swift */; };
 		B2E5B2E21CCE01E4007E9C62 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2E5B2E11CCE01E4007E9C62 /* CoreData.framework */; };
 		B2E5B2E51CCE0405007E9C62 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B2E5B2E31CCE0405007E9C62 /* Model.xcdatamodeld */; };
 		B2E5B2ED1CCE0554007E9C62 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2E5B2EB1CCE0554007E9C62 /* Message.swift */; };
@@ -82,6 +83,7 @@
 		B2BCD1301CC8FA28000503E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B2C892761CD5D3F5004262F9 /* NewGroupParticipantsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGroupParticipantsViewController.swift; sourceTree = "<group>"; };
 		B2C892781CD5D87A004262F9 /* TestUI.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = TestUI.playground; sourceTree = "<group>"; };
+		B2CDB8491CD73C8300C61321 /* FirebaseModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseModels.swift; sourceTree = "<group>"; };
 		B2E5B2E11CCE01E4007E9C62 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		B2E5B2E41CCE0405007E9C62 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		B2E5B2EB1CCE0554007E9C62 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 				B255695B1CD6F7D200A1D823 /* SignUpViewController.swift */,
 				B255695D1CD7006700A1D823 /* RemoteStore.swift */,
 				B255696B1CD70DCD00A1D823 /* FirebaseStore.swift */,
+				B2CDB8491CD73C8300C61321 /* FirebaseModels.swift */,
 				B255695A1CD6F76100A1D823 /* Data */,
 				B25569591CD6F73800A1D823 /* FavoriteVC */,
 				B2F2F5071CD648DB00BE48F0 /* NewGroupParticipantsVC */,
@@ -370,6 +373,7 @@
 				B27ADE741CCD348A00451580 /* CDHelper.swift in Sources */,
 				B24BDEFE1CD46746006B242F /* NewChatViewController.swift in Sources */,
 				B2E5B2F41CCE17B6007E9C62 /* Chat.swift in Sources */,
+				B2CDB84A1CD73C8300C61321 /* FirebaseModels.swift in Sources */,
 				B255695C1CD6F7D200A1D823 /* SignUpViewController.swift in Sources */,
 				B2C892771CD5D3F5004262F9 /* NewGroupParticipantsViewController.swift in Sources */,
 				B2F2F5051CD61A9100BE48F0 /* PhoneNumber+CoreDataProperties.swift in Sources */,

@@ -14,11 +14,12 @@ import CoreData
 
 extension Contact {
 
-    @NSManaged var firstName: String?
-    @NSManaged var lastName: String?
     @NSManaged var contactId: String?
     @NSManaged var favorite: Bool
+    @NSManaged var firstName: String?
+    @NSManaged var lastName: String?
     @NSManaged var status: String?
+    @NSManaged var storageId: String?
     @NSManaged var chats: NSSet?
     @NSManaged var messages: Message?
     @NSManaged var phoneNumbers: NSSet?

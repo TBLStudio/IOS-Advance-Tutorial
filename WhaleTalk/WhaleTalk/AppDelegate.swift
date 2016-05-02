@@ -40,13 +40,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         contactSyncer = Syncer(mainContext: mainContext, backgroundContext: contactsContext)
-        //        contactsUploadSyncer = Syncer(mainContext: mainContext, backgroundContext: firebaseContext)
-        //        firebaseSyncer = Syncer(mainContext: mainContext, backgroundContext: firebaseContext)
         
         let firebaseStore = FirebaseStore(context: firebaseContext)
         self.firebaseStore = firebaseStore
         
-        contactsUploadSyncer = Syncer(mainContext: mainContext, backgroundContext: firebaseContext)
+        contactsUploadSyncer = Syncer(mainContext: contactsContext, backgroundContext: firebaseContext)
         contactsUploadSyncer?.remoteStore = firebaseStore
         firebaseSyncer = Syncer(mainContext: mainContext, backgroundContext: firebaseContext)
         firebaseSyncer?.remoteStore = firebaseStore
