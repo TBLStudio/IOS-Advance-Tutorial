@@ -98,6 +98,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B25569591CD6F73800A1D823 /* FavoriteVC */ = {
+			isa = PBXGroup;
+			children = (
+				B2F2F5141CD680EC00BE48F0 /* FavoriteCell.swift */,
+				B2F2F5161CD682D300BE48F0 /* FavoriteViewController.swift */,
+			);
+			name = FavoriteVC;
+			sourceTree = "<group>";
+		};
+		B255695A1CD6F76100A1D823 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				B2F2F5121CD67DF700BE48F0 /* Syncer.swift */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
 		B2BCD1181CC8FA28000503E4 = {
 			isa = PBXGroup;
 			children = (
@@ -126,9 +143,8 @@
 			isa = PBXGroup;
 			children = (
 				B2BCD1241CC8FA28000503E4 /* AppDelegate.swift */,
-				B2F2F5121CD67DF700BE48F0 /* Syncer.swift */,
-				B2F2F5141CD680EC00BE48F0 /* FavoriteCell.swift */,
-				B2F2F5161CD682D300BE48F0 /* FavoriteViewController.swift */,
+				B255695A1CD6F76100A1D823 /* Data */,
+				B25569591CD6F73800A1D823 /* FavoriteVC */,
 				B2F2F5071CD648DB00BE48F0 /* NewGroupParticipantsVC */,
 				B2F49B961CD5207F0084435F /* NewGroupVC */,
 				B2F49B8E1CD510C80084435F /* ContactVC */,

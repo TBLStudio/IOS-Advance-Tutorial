@@ -39,6 +39,39 @@ class Chat: NSManagedObject {
         
     }
     
+    static func existing (directWith contact: Contact, inContext context: NSManagedObjectContext) -> Chat? {
+    
+        let request = NSFetchRequest(entityName: "Chat")
+        request.predicate = NSPredicate (format: "ANY participants = %@ AND participants.@count = 1", contact)
+        do {
+            guard let results = try context.executeFetchRequest(request) as? [Chat] else {return nil}
+            return results.first
+        }
+        catch {
+            print("Error Fetching")
+        }
+        return nil
+    }
+    
+    static func new( directWith contact: Contact, inContext context: NSManagedObjectContext) -> Chat{
+        let chat = NSEntityDescription.insertNewObjectForEntityForName("Chat", inManagedObjectContext: context) as! Chat
+        chat.add(participant: contact)
+        return chat
+    }
+    
     
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
