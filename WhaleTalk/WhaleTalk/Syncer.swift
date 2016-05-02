@@ -13,6 +13,7 @@ import CoreData
 class Syncer: NSObject {
     private var mainContext: NSManagedObjectContext
     private var backgroundContext: NSManagedObjectContext
+    var remoteStore: RemoteStore?
     
     init(mainContext: NSManagedObjectContext, backgroundContext: NSManagedObjectContext) {
         self.mainContext = mainContext
@@ -25,8 +26,14 @@ class Syncer: NSObject {
     }
     
     func mainContextSaved (notification: NSNotification) {
-        backgroundContext.performBlock { 
+        backgroundContext.performBlock {
+            
+            let inserted = self.objectForKey(NSInsertedObjectsKey, dictionary: notification.userInfo!, context: self.backgroundContext)
+            let updated = self.objectForKey(NSUpdatedObjectsKey, dictionary: notification.userInfo!, context: self.backgroundContext)
+            let deleted = self.objectForKey(NSDeletedObjectsKey, dictionary: notification.userInfo!, context: self.backgroundContext)
+            
             self.backgroundContext.mergeChangesFromContextDidSaveNotification(notification)
+            self.remoteStore?.store(inserted: inserted, updated: updated, deleted: deleted)
         }
     
     
@@ -37,6 +44,12 @@ class Syncer: NSObject {
             self.mainContext.mergeChangesFromContextDidSaveNotification(notification)
         }
     
+    }
+    
+    private func objectForKey(key: String, dictionary: NSDictionary, context: NSManagedObjectContext) -> [NSManagedObject] {
+        guard let set = (dictionary[key] as? NSSet) else {return []}
+        guard let objects = set.allObjects as? [NSManagedObject] else {return []}
+        return objects.map({context.objectWithID($0.objectID)})
     }
     
     

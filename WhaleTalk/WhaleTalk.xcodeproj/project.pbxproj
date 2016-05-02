@@ -15,6 +15,7 @@
 		B24BDF0A1CD49E2C006B242F /* Chat+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24BDF091CD49E2C006B242F /* Chat+CoreDataProperties.swift */; };
 		B24BDF0C1CD4AA3A006B242F /* ChatCreationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24BDF0B1CD4AA3A006B242F /* ChatCreationDelegate.swift */; };
 		B255695C1CD6F7D200A1D823 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B255695B1CD6F7D200A1D823 /* SignUpViewController.swift */; };
+		B255695E1CD7006700A1D823 /* RemoteStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B255695D1CD7006700A1D823 /* RemoteStore.swift */; };
 		B27ADE721CCD320F00451580 /* UITableView+Scroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27ADE711CCD320F00451580 /* UITableView+Scroll.swift */; };
 		B27ADE741CCD348A00451580 /* CDHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27ADE731CCD348A00451580 /* CDHelper.swift */; };
 		B2B5DF551CC9E2B0001A1146 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B5DF541CC9E2B0001A1146 /* MessageCell.swift */; };
@@ -55,6 +56,7 @@
 		B24BDF091CD49E2C006B242F /* Chat+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Chat+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B24BDF0B1CD4AA3A006B242F /* ChatCreationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCreationDelegate.swift; sourceTree = "<group>"; };
 		B255695B1CD6F7D200A1D823 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		B255695D1CD7006700A1D823 /* RemoteStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteStore.swift; sourceTree = "<group>"; };
 		B27ADE711CCD320F00451580 /* UITableView+Scroll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Scroll.swift"; sourceTree = "<group>"; };
 		B27ADE731CCD348A00451580 /* CDHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDHelper.swift; sourceTree = "<group>"; };
 		B2B5DF541CC9E2B0001A1146 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 			children = (
 				B2BCD1241CC8FA28000503E4 /* AppDelegate.swift */,
 				B255695B1CD6F7D200A1D823 /* SignUpViewController.swift */,
+				B255695D1CD7006700A1D823 /* RemoteStore.swift */,
 				B255695A1CD6F76100A1D823 /* Data */,
 				B25569591CD6F73800A1D823 /* FavoriteVC */,
 				B2F2F5071CD648DB00BE48F0 /* NewGroupParticipantsVC */,
@@ -332,6 +335,7 @@
 				B27ADE721CCD320F00451580 /* UITableView+Scroll.swift in Sources */,
 				B2F2F5021CD613CD00BE48F0 /* ContactImporter.swift in Sources */,
 				B2F2F50D1CD661E000BE48F0 /* TableViewFetchedResultsDisplayer.swift in Sources */,
+				B255695E1CD7006700A1D823 /* RemoteStore.swift in Sources */,
 				B2F2F5091CD6494C00BE48F0 /* ContextViewController.swift in Sources */,
 				B24BDF071CD49E04006B242F /* Contact+CoreDataProperties.swift in Sources */,
 				B2E5B2FA1CCE1F0C007E9C62 /* ChatCell.swift in Sources */,
