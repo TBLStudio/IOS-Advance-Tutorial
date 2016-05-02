@@ -12,6 +12,33 @@ import CoreData
 
 extension Chat: FirebaseModel {
     
+    func observeMessages(rooRef: Firebase, context: NSManagedObjectContext) {
+        guard let storageId = storageId else {return}
+        let lastFetch = lastMessage?.timestamp?.timeIntervalSince1970 ?? 0
+        
+        rooRef.childByAppendingPath("chats/"+storageId+"/messages").queryOrderedByKey().queryStartingAtValue(String(lastFetch * 100000)).observeEventType(.ChildAdded, withBlock: {
+            snapshot in
+            context.performBlock({ 
+                guard let phoneNumber = snapshot.value["sender"] as? String where phoneNumber != FirebaseStore.currentPhoneNumber else {return}
+                guard let text = snapshot.value["message"] as? String else {return}
+                guard let timeInterval = Double(snapshot.key) else {return}
+                let date = NSDate(timeIntervalSince1970: timeInterval/100000)
+                guard let message = NSEntityDescription.insertNewObjectForEntityForName("Message", inManagedObjectContext: context) as? Message else {return}
+                message.text = text
+                message.timestamp = date
+                message.sender = Contact.existing(withPhoneNumber: phoneNumber, rootRef: rooRef, inContext: context) ?? Contact.new(forPhoneNumber: phoneNumber, rootRef: rooRef, inContext: context)
+                message.chat = self
+                do {
+                    try context.save()
+                }
+                catch {
+                    print("Error saving message")
+                }
+                
+            })
+        })
+    }
+    
     static func existing(storageId storageId: String, inContext context: NSManagedObjectContext) -> Chat? {
         let request = NSFetchRequest(entityName: "Chat")
         request.predicate = NSPredicate(format: "storageId = %@", storageId)
@@ -53,6 +80,7 @@ extension Chat: FirebaseModel {
                 catch {
                     print("Save error")
                 }
+                chat.observeMessages(rootRef, context: context)
             })
         }) { (error) in
             print("error: \(error)")

@@ -48,6 +48,7 @@ class NewGroupParticipantsViewController: UIViewController {
         
         if let context = context {
             let request = NSFetchRequest (entityName: "Contact")
+            request.predicate = NSPredicate(format: "storageId != nil")
             request.sortDescriptors = [NSSortDescriptor(key: "lastName", ascending: true)]
             do {
                 if let result = try context.executeFetchRequest(request) as? [Contact] {
