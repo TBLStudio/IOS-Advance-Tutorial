@@ -14,6 +14,7 @@
 		B24BDF071CD49E04006B242F /* Contact+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24BDF051CD49E04006B242F /* Contact+CoreDataProperties.swift */; };
 		B24BDF0A1CD49E2C006B242F /* Chat+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24BDF091CD49E2C006B242F /* Chat+CoreDataProperties.swift */; };
 		B24BDF0C1CD4AA3A006B242F /* ChatCreationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24BDF0B1CD4AA3A006B242F /* ChatCreationDelegate.swift */; };
+		B255695C1CD6F7D200A1D823 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B255695B1CD6F7D200A1D823 /* SignUpViewController.swift */; };
 		B27ADE721CCD320F00451580 /* UITableView+Scroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27ADE711CCD320F00451580 /* UITableView+Scroll.swift */; };
 		B27ADE741CCD348A00451580 /* CDHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27ADE731CCD348A00451580 /* CDHelper.swift */; };
 		B2B5DF551CC9E2B0001A1146 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B5DF541CC9E2B0001A1146 /* MessageCell.swift */; };
@@ -53,6 +54,7 @@
 		B24BDF051CD49E04006B242F /* Contact+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Contact+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B24BDF091CD49E2C006B242F /* Chat+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Chat+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B24BDF0B1CD4AA3A006B242F /* ChatCreationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCreationDelegate.swift; sourceTree = "<group>"; };
+		B255695B1CD6F7D200A1D823 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		B27ADE711CCD320F00451580 /* UITableView+Scroll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Scroll.swift"; sourceTree = "<group>"; };
 		B27ADE731CCD348A00451580 /* CDHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDHelper.swift; sourceTree = "<group>"; };
 		B2B5DF541CC9E2B0001A1146 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				B2BCD1241CC8FA28000503E4 /* AppDelegate.swift */,
+				B255695B1CD6F7D200A1D823 /* SignUpViewController.swift */,
 				B255695A1CD6F76100A1D823 /* Data */,
 				B25569591CD6F73800A1D823 /* FavoriteVC */,
 				B2F2F5071CD648DB00BE48F0 /* NewGroupParticipantsVC */,
@@ -336,6 +339,7 @@
 				B27ADE741CCD348A00451580 /* CDHelper.swift in Sources */,
 				B24BDEFE1CD46746006B242F /* NewChatViewController.swift in Sources */,
 				B2E5B2F41CCE17B6007E9C62 /* Chat.swift in Sources */,
+				B255695C1CD6F7D200A1D823 /* SignUpViewController.swift in Sources */,
 				B2C892771CD5D3F5004262F9 /* NewGroupParticipantsViewController.swift in Sources */,
 				B2F2F5051CD61A9100BE48F0 /* PhoneNumber+CoreDataProperties.swift in Sources */,
 				B2E5B2E51CCE0405007E9C62 /* Model.xcdatamodeld in Sources */,
