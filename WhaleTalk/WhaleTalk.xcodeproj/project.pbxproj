@@ -16,6 +16,13 @@
 		B24BDF0C1CD4AA3A006B242F /* ChatCreationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24BDF0B1CD4AA3A006B242F /* ChatCreationDelegate.swift */; };
 		B255695C1CD6F7D200A1D823 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B255695B1CD6F7D200A1D823 /* SignUpViewController.swift */; };
 		B255695E1CD7006700A1D823 /* RemoteStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B255695D1CD7006700A1D823 /* RemoteStore.swift */; };
+		B25569601CD70C9800A1D823 /* Firebase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B255695F1CD70C9800A1D823 /* Firebase.framework */; };
+		B25569621CD70CE400A1D823 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B25569611CD70CE400A1D823 /* libicucore.tbd */; };
+		B25569641CD70CED00A1D823 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B25569631CD70CED00A1D823 /* libc++.tbd */; };
+		B25569661CD70CF700A1D823 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B25569651CD70CF700A1D823 /* CFNetwork.framework */; };
+		B25569681CD70D0300A1D823 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B25569671CD70D0300A1D823 /* Security.framework */; };
+		B255696A1CD70D0D00A1D823 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B25569691CD70D0D00A1D823 /* SystemConfiguration.framework */; };
+		B255696C1CD70DCD00A1D823 /* FirebaseStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B255696B1CD70DCD00A1D823 /* FirebaseStore.swift */; };
 		B27ADE721CCD320F00451580 /* UITableView+Scroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27ADE711CCD320F00451580 /* UITableView+Scroll.swift */; };
 		B27ADE741CCD348A00451580 /* CDHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27ADE731CCD348A00451580 /* CDHelper.swift */; };
 		B2B5DF551CC9E2B0001A1146 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B5DF541CC9E2B0001A1146 /* MessageCell.swift */; };
@@ -57,6 +64,13 @@
 		B24BDF0B1CD4AA3A006B242F /* ChatCreationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCreationDelegate.swift; sourceTree = "<group>"; };
 		B255695B1CD6F7D200A1D823 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		B255695D1CD7006700A1D823 /* RemoteStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteStore.swift; sourceTree = "<group>"; };
+		B255695F1CD70C9800A1D823 /* Firebase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Firebase.framework; sourceTree = "<group>"; };
+		B25569611CD70CE400A1D823 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
+		B25569631CD70CED00A1D823 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		B25569651CD70CF700A1D823 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		B25569671CD70D0300A1D823 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		B25569691CD70D0D00A1D823 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		B255696B1CD70DCD00A1D823 /* FirebaseStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseStore.swift; sourceTree = "<group>"; };
 		B27ADE711CCD320F00451580 /* UITableView+Scroll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Scroll.swift"; sourceTree = "<group>"; };
 		B27ADE731CCD348A00451580 /* CDHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDHelper.swift; sourceTree = "<group>"; };
 		B2B5DF541CC9E2B0001A1146 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
@@ -95,7 +109,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B255696A1CD70D0D00A1D823 /* SystemConfiguration.framework in Frameworks */,
+				B25569681CD70D0300A1D823 /* Security.framework in Frameworks */,
+				B25569661CD70CF700A1D823 /* CFNetwork.framework in Frameworks */,
+				B25569641CD70CED00A1D823 /* libc++.tbd in Frameworks */,
+				B25569621CD70CE400A1D823 /* libicucore.tbd in Frameworks */,
 				B2E5B2E21CCE01E4007E9C62 /* CoreData.framework in Frameworks */,
+				B25569601CD70C9800A1D823 /* Firebase.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,6 +169,7 @@
 				B2BCD1241CC8FA28000503E4 /* AppDelegate.swift */,
 				B255695B1CD6F7D200A1D823 /* SignUpViewController.swift */,
 				B255695D1CD7006700A1D823 /* RemoteStore.swift */,
+				B255696B1CD70DCD00A1D823 /* FirebaseStore.swift */,
 				B255695A1CD6F76100A1D823 /* Data */,
 				B25569591CD6F73800A1D823 /* FavoriteVC */,
 				B2F2F5071CD648DB00BE48F0 /* NewGroupParticipantsVC */,
@@ -234,6 +255,12 @@
 		B2F49B941CD5114E0084435F /* Framworks */ = {
 			isa = PBXGroup;
 			children = (
+				B25569631CD70CED00A1D823 /* libc++.tbd */,
+				B25569611CD70CE400A1D823 /* libicucore.tbd */,
+				B25569691CD70D0D00A1D823 /* SystemConfiguration.framework */,
+				B25569671CD70D0300A1D823 /* Security.framework */,
+				B25569651CD70CF700A1D823 /* CFNetwork.framework */,
+				B255695F1CD70C9800A1D823 /* Firebase.framework */,
 				B2E5B2E11CCE01E4007E9C62 /* CoreData.framework */,
 			);
 			name = Framworks;
@@ -346,6 +373,7 @@
 				B255695C1CD6F7D200A1D823 /* SignUpViewController.swift in Sources */,
 				B2C892771CD5D3F5004262F9 /* NewGroupParticipantsViewController.swift in Sources */,
 				B2F2F5051CD61A9100BE48F0 /* PhoneNumber+CoreDataProperties.swift in Sources */,
+				B255696C1CD70DCD00A1D823 /* FirebaseStore.swift in Sources */,
 				B2E5B2E51CCE0405007E9C62 /* Model.xcdatamodeld in Sources */,
 				B24BDEFC1CD4628B006B242F /* Contact.swift in Sources */,
 				B2F2F5131CD67DF700BE48F0 /* Syncer.swift in Sources */,
@@ -480,6 +508,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/WhaleTalk",
+				);
 				INFOPLIST_FILE = WhaleTalk/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = TBLStudio.WhaleTalk;
@@ -494,6 +526,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/WhaleTalk",
+				);
 				INFOPLIST_FILE = WhaleTalk/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = TBLStudio.WhaleTalk;

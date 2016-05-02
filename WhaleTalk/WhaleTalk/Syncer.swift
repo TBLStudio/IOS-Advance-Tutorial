@@ -41,6 +41,8 @@ class Syncer: NSObject {
     
     func backgroundContextSaved (notification: NSNotification) {
         mainContext.performBlock {
+            self.objectForKey(NSUpdatedObjectsKey, dictionary: notification.userInfo!, context: self.mainContext).forEach {$0.willAccessValueForKey(nil)}
+            
             self.mainContext.mergeChangesFromContextDidSaveNotification(notification)
         }
     
