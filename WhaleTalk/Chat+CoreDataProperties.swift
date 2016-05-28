@@ -2,7 +2,7 @@
 //  Chat+CoreDataProperties.swift
 //  WhaleTalk
 //
-//  Created by Thái Bô Lão on 4/25/16.
+//  Created by Ngo Thai on 5/2/16.
 //  Copyright © 2016 TBLStudio. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -15,6 +15,9 @@ import CoreData
 extension Chat {
 
     @NSManaged var lastMessageTime: NSDate?
+    @NSManaged var name: String?
+    @NSManaged var storageId: String?
     @NSManaged var messages: NSSet?
+    @NSManaged var participants: NSSet?
 
 }

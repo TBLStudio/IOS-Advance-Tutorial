@@ -24,16 +24,24 @@ class ChatViewController: UIViewController {
     
     private let cellIdentifier = "Cell"
     
-    var context: NSManagedObjectContext?
+    private enum Error: ErrorType {
+        case NoChat
+        case NoContext
+    }
     
+    var context: NSManagedObjectContext?
+    var chat : Chat?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         do {
+            guard let chat = chat else {throw Error.NoChat}
+            guard let context = context else {throw Error.NoContext}
             let request = NSFetchRequest(entityName: "Message")
+            request.predicate = NSPredicate(format: "chat=%@", chat)
             request.sortDescriptors = [NSSortDescriptor(key: "timestamp", ascending: false)]
-            if let result = try context?.executeFetchRequest(request) as? [Message] {
+            if let result = try context.executeFetchRequest(request) as? [Message] {
                 for message in result
                 {
                     addMessage(message)
@@ -44,7 +52,7 @@ class ChatViewController: UIViewController {
             print("We couldn't fetch")
         }
             
-        
+        automaticallyAdjustsScrollViewInsets = false
         let newMessageArea = UIView()
         newMessageArea.backgroundColor = UIColor.lightGrayColor()
         newMessageArea.translatesAutoresizingMaskIntoConstraints = false
@@ -86,6 +94,10 @@ class ChatViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.estimatedRowHeight = 44
+        tableView.backgroundView = UIImageView(image: UIImage(named: "whaletalk-Bg"))
+        tableView.separatorColor = UIColor.clearColor()
+        tableView.sectionHeaderHeight = UITableViewAutomaticDimension
+        tableView.estimatedSectionHeaderHeight = 25
         
         //Setup Layout TableView
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -93,7 +105,7 @@ class ChatViewController: UIViewController {
         
         //Contraint for Tableview
         let tableViewContrains: [NSLayoutConstraint] = [
-                tableView.topAnchor.constraintEqualToAnchor(view.topAnchor),
+                tableView.topAnchor.constraintEqualToAnchor(topLayoutGuide.bottomAnchor),
                 tableView.leadingAnchor.constraintEqualToAnchor(view.leadingAnchor),
                 tableView.trailingAnchor.constraintEqualToAnchor(view.trailingAnchor),
                 tableView.bottomAnchor.constraintEqualToAnchor(newMessageArea.topAnchor)
@@ -105,12 +117,20 @@ class ChatViewController: UIViewController {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ChatViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
         
+        if let mainContext = context?.parentContext ?? context
+        {
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ChatViewController.contextUpdated(_:)), name: NSManagedObjectContextObjectsDidChangeNotification, object: mainContext)
+        }
+        
+        
         let tabRecognizer = UITapGestureRecognizer(target: self, action: #selector(ChatViewController.handleSingleTab(_:)))
         tabRecognizer.numberOfTapsRequired = 1
         view.addGestureRecognizer(tabRecognizer)
 
         
     }
+    
+   
     
     override func viewDidAppear(animated: Bool) {
         tableView.scrollToBottom()
@@ -154,13 +174,13 @@ class ChatViewController: UIViewController {
     func pressdSend (button: UIButton)
     {
         guard let text = newMessageField.text where text.characters.count > 0 else {return}
+        checkTemporaryContext()
         guard let context = context else {return}
         guard let message = NSEntityDescription.insertNewObjectForEntityForName("Message", inManagedObjectContext: context) as? Message else {return}
         message.text = text
-        message.isIncoming = false
         message.timestamp = NSDate()
-        addMessage(message)
-        
+        message.chat = chat
+        chat?.lastMessageTime = message.timestamp
         //Save Message
         do {
             try context.save()
@@ -169,8 +189,6 @@ class ChatViewController: UIViewController {
             return
         }
         newMessageField.text = ""
-        tableView.reloadData()
-        tableView.scrollToBottom()
         view.endEditing(true)
         
     }
@@ -189,14 +207,41 @@ class ChatViewController: UIViewController {
             dates = dates.sort({$0.earlierDate($1) == $0})
             messages = [Message]()
         }
-        
         messages?.append(message)
         messages?.sortInPlace {$0.timestamp!.earlierDate($1.timestamp!) == $0.timestamp}
         sections[startDay] = messages
-        
     }
     
+    func contextUpdated (notification: NSNotification) {
+        guard let set = (notification.userInfo![NSInsertedObjectsKey] as? NSSet) else {return}
+        let objects = set.allObjects
+        for obj in objects {
+            guard let message = obj as? Message else {continue}
+            if message.chat?.objectID == chat?.objectID {
+                addMessage(message)
+            }
+        }
+        tableView.reloadData()
+        tableView.scrollToBottom()
+    }
     
+    func checkTemporaryContext () {
+        if let mainContext = context?.parentContext, chat = chat {
+            let tempContext = context
+            context = mainContext
+            do {
+                try tempContext?.save()
+            }
+            catch {
+                print("Error saving temp context")
+            }
+            self.chat = mainContext.objectWithID(chat.objectID) as? Chat
+        }
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
 }
 
 extension ChatViewController: UITableViewDataSource

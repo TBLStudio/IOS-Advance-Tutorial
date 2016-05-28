@@ -9,13 +9,15 @@
 import UIKit
 import CoreData
 
-class AllChatsViewController: UIViewController {
+class AllChatsViewController: UIViewController, TableViewFetchedResultsDisplayer, ChatCreationDelegate, ContextViewController {
     
     var context: NSManagedObjectContext?
     
     private var fetchedResultsController: NSFetchedResultsController?
     private let tableView = UITableView(frame: CGRectZero, style: UITableViewStyle.Plain)
     private let cellIdentifier = "MessageCell"
+    
+    private var fetchedResultsDelegate: TableViewFetchedResultsDelegate?
     
 
     override func viewDidLoad() {
@@ -28,25 +30,19 @@ class AllChatsViewController: UIViewController {
         
         tableView.registerClass(ChatCell.self, forCellReuseIdentifier: cellIdentifier)
         tableView.tableFooterView = UIView(frame: CGRectZero)
-        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.tableHeaderView = createHeader()
         tableView.dataSource = self
         tableView.delegate = self
-        view.addSubview(tableView)
         
-        let tableViewConstraints: [NSLayoutConstraint] = [
-            tableView.topAnchor.constraintEqualToAnchor(topLayoutGuide.bottomAnchor),
-            tableView.leadingAnchor.constraintEqualToAnchor(view.leadingAnchor),
-            tableView.trailingAnchor.constraintEqualToAnchor(view.trailingAnchor),
-            tableView.bottomAnchor.constraintEqualToAnchor(bottomLayoutGuide.topAnchor)
-        ]
-        
-        NSLayoutConstraint.activateConstraints(tableViewConstraints)
+        fillViewWith(tableView)
         
         if let context = context {
             let request = NSFetchRequest(entityName: "Chat")
             request.sortDescriptors = [NSSortDescriptor(key: "lastMessageTime", ascending: false)]
             fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
-            fetchedResultsController?.delegate = self
+            //fetchedResultsController?.delegate = self
+            fetchedResultsDelegate = TableViewFetchedResultsDelegate(tableView: tableView, displayer: self)
+            fetchedResultsController?.delegate = fetchedResultsDelegate
             do {
                 try fetchedResultsController?.performFetch()
             
@@ -66,6 +62,13 @@ class AllChatsViewController: UIViewController {
     }
     func newChat ()
     {
+        let vc = NewChatViewController()
+        let chatContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
+        chatContext.parentContext = context
+        vc.context = chatContext
+        vc.chatCreationDelegate = self
+        let navVC = UINavigationController(rootViewController: vc)
+        presentViewController(navVC, animated: true, completion: nil)
         
     }
     
@@ -81,16 +84,74 @@ class AllChatsViewController: UIViewController {
     {
         let cell = cell as! ChatCell
         guard let chat = fetchedResultsController?.objectAtIndexPath(indexPath) as? Chat else {return}
+        guard let contact = chat.participants?.anyObject() as? Contact else {return}
+        guard let lastMessage = chat.lastMessage, timestamp = lastMessage.timestamp, text = lastMessage.text else {return}
+        
+        
+        
         let formatter = NSDateFormatter()
         formatter.dateFormat = "MM/dd/YY"
-        cell.nameLabel.text = "Eliot"
-        cell.dateLabel.text = formatter.stringFromDate(NSDate())
-        cell.messageLabel.text = "Hey!"
+        cell.nameLabel.text = contact.fullName
+        cell.dateLabel.text = formatter.stringFromDate(timestamp)
+        cell.messageLabel.text = text
+    
+    }
+    func created(chat chat: Chat, inContext context: NSManagedObjectContext) {
+        let vc = ChatViewController()
+        vc.context = context
+        vc.chat = chat
+        vc.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    private func createHeader () -> UIView {
+        let header = UIView()
+        let newGroupButton = UIButton()
+        newGroupButton.translatesAutoresizingMaskIntoConstraints = false
+        header.addSubview(newGroupButton)
+        
+        newGroupButton.setTitle("New Group", forState: .Normal)
+        newGroupButton.setTitleColor(view.tintColor, forState: .Normal)
+        newGroupButton.addTarget(self, action: #selector(AllChatsViewController.pressedNewGroup), forControlEvents: UIControlEvents.TouchUpInside)
+        
+        let border = UIView()
+        border.translatesAutoresizingMaskIntoConstraints = false
+        header.addSubview(border)
+        border.backgroundColor = UIColor.lightGrayColor()
+        
+        let constraints: [NSLayoutConstraint] = [
+            newGroupButton.heightAnchor.constraintEqualToAnchor(header.heightAnchor),
+            newGroupButton.trailingAnchor.constraintEqualToAnchor(header.layoutMarginsGuide.trailingAnchor),
+            border.heightAnchor.constraintEqualToConstant(1),
+            border.leadingAnchor.constraintEqualToAnchor(header.leadingAnchor),
+            border.trailingAnchor.constraintEqualToAnchor(header.trailingAnchor),
+            border.bottomAnchor.constraintEqualToAnchor(header.bottomAnchor)
+        ]
+        
+        NSLayoutConstraint.activateConstraints(constraints)
+        header.setNeedsLayout()
+        header.layoutIfNeeded()
+        
+        let height = header.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height
+        var frame = header.frame
+        frame.size.height = height
+        header.frame = frame
+        
+        return header
+        
+    }
+    
+    func pressedNewGroup () {
+        let vc = NewGroupViewController()
+        let chatContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
+        chatContext.parentContext = context
+        vc.context = chatContext
+        vc.chatCreationDelegate = self
+        let navVC = UINavigationController(rootViewController: vc)
+        presentViewController(navVC, animated: true, completion: nil)
     
     }
     
-    
-
 }
 
 extension AllChatsViewController: UITableViewDataSource
@@ -101,14 +162,13 @@ extension AllChatsViewController: UITableViewDataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let sections = fetchedResultsController?.sections else {return 0}
         let currentSection = sections[section]
-        return currentSection.numberOfObjects
+        return currentSection.numberOfObjects ?? 0
     }
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
         configureCell(cell, atIndexPath: indexPath)
         return cell
     }
-
 }
 
 extension AllChatsViewController: UITableViewDelegate
@@ -121,56 +181,15 @@ extension AllChatsViewController: UITableViewDelegate
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         guard let chat = fetchedResultsController?.objectAtIndexPath(indexPath) as? Chat else {return}
-        
+        let vc = ChatViewController()
+        vc.context = context
+        vc.chat = chat
+        vc.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(vc, animated: true)
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 
 }
-
-
-extension AllChatsViewController: NSFetchedResultsControllerDelegate
-{
-    func controllerWillChangeContent(controller: NSFetchedResultsController) {
-        tableView.beginUpdates()
-    }
-    
-    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
-        switch type {
-        case .Insert:
-            tableView.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
-        case .Delete:
-            tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
-        default:
-            break
-        }
-    }
-    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
-        
-        switch type {
-        case .Insert:
-            tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
-        case .Update:
-            let cell = tableView.cellForRowAtIndexPath(indexPath!)
-            configureCell(cell!, atIndexPath: indexPath!)
-            tableView.reloadRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
-        case .Move:
-            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
-            tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
-        case .Delete:
-            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
-        default:
-            break
-        }
-        
-    }
-    
-    func controllerDidChangeContent(controller: NSFetchedResultsController) {
-        tableView.endUpdates()
-    }
-}
-
-
-
-
 
 
 
